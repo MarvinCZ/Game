@@ -1,4 +1,5 @@
-﻿using GameEngine.Cameras;
+﻿using System.Collections.Generic;
+using GameEngine.Cameras;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,8 @@ namespace GameEngine.GameObjects
         private Rectangle _boundingBox;
 
         protected ColisionBox colisionBox;
+
+        protected List<Sound> sounds;
 
         public bool IsSolid
         {
@@ -144,6 +147,7 @@ namespace GameEngine.GameObjects
             Scale = Vector2.One;
             SpriteColor = Color.White;
             CameraDependent = true;
+            sounds = new List<Sound>();
         }
 
         protected SpriteObject(GameScreen game,Vector2 position)
@@ -170,6 +174,8 @@ namespace GameEngine.GameObjects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            foreach (Sound snd in sounds)
+                snd.Update();
         }
 
         public override void UnloadContent(){

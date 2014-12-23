@@ -43,6 +43,7 @@
     <Compile Include="GameObjects\ClickableText.cs" />
     <Compile Include="GameObjects\MessageBox.cs" />
     <Compile Include="HelpObjects\ColisionBox.cs" />
+    <Compile Include="HelpObjects\Sound.cs" />
     <Compile Include="Objects\Bounci.cs" />
     <Compile Include="Objects\Box.cs" />
     <Compile Include="Objects\ClickTest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Objects\Hvezda.cs" />
     <Compile Include="Objects\Projectile.cs" />
+    <Compile Include="Objects\Soundy.cs" />
     <Compile Include="Objects\Star.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CDiag.cd" />
+    <None Include="Content\Sounds\zvuk.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\SpriteFonts\menu.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

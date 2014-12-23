@@ -59,6 +59,7 @@ namespace GameEngine
             GameObjects.Add(_ukazatelPozice);
             GameObjects.Add(new Controleble(this));
             GameObjects.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
+            GameObjects.Add(new Soundy(this));
             foreach (GameObject go in GameObjects){
                 go.LoadContent(contentManager);
             }

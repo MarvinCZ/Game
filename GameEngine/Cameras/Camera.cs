@@ -20,7 +20,11 @@ namespace GameEngine.Cameras
         /// <summary>
         /// pozice puuzita pro rotaci a zoom
         /// </summary>
-        public Vector2 Position;
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
         /// <summary>
         /// urcuje rotaci kamery v radianech
         /// </summary>

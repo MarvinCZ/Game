@@ -99,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CDiag.cd" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Content\SpriteFonts\menu.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

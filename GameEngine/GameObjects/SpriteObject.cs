@@ -180,6 +180,9 @@ namespace GameEngine.GameObjects
 
         public override void UnloadContent(){
             _texture = null;
+            foreach (Sound snd in sounds)
+                snd.Stop();
+            sounds = new List<Sound>();
         }
         protected void UpdateBoundingBox()
         {

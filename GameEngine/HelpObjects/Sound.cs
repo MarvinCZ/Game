@@ -39,5 +39,9 @@ namespace GameEngine.HelpObjects
         {
             sndEffect.Play();
         }
+        public void Stop()
+        {
+            sndEffect.Stop();
+        }
     }
 }

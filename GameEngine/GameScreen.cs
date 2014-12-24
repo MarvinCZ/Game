@@ -43,6 +43,8 @@ namespace GameEngine
 
         public void UnloadContent(){
             contentManager.Unload();
+            foreach (GameObject obj in GameObjects)
+                obj.UnloadContent();
             GameObjects = new List<GameObject>();
             _objekty = null;
         }

@@ -13,13 +13,15 @@ namespace GameEngine
         private GameScreen _activeScreen;
         private bool _fullscreen = false;
         public MouseState LastMouseState;
+        public KeyboardState LastKeyboardState;
+        private GraphicsDeviceManager _graphicDeviceManager;
 
         public ScreenManager()
         {
-            GraphicsDeviceManager graphics = new GraphicsDeviceManager(this);
+            _graphicDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            Fullscreen(true,graphics);
+            Fullscreen(true, _graphicDeviceManager);
             Screens.Add(new TestScreen(this));
             Screens.Add(new ScreenKolize(this));
             Screens.Add(new ScreenKolizeDalsi(this));
@@ -70,9 +72,12 @@ namespace GameEngine
 
         protected override void Update(GameTime gameTime){
             base.Update(gameTime);
-            if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && LastKeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
-                ActiveScreen<MenuScreen>();
+                if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift))
+                    Fullscreen(null, _graphicDeviceManager);
+                else
+                    ActiveScreen<MenuScreen>();
             }
             for (int i = 0; i < Screens.Count; i++)
             {
@@ -83,12 +88,17 @@ namespace GameEngine
             }
             _activeScreen.Update(gameTime);
             LastMouseState = Mouse.GetState();
+            LastKeyboardState = Keyboard.GetState();
         }
 
-        public void Fullscreen(bool fullscreen, GraphicsDeviceManager graphics){
+        public void Fullscreen(bool? fullscreen, GraphicsDeviceManager graphics){
             if (fullscreen != _fullscreen){
-                _fullscreen = fullscreen;
-                if (fullscreen){
+                if(fullscreen == null)
+                    _fullscreen = ! _fullscreen;
+                else{
+                    _fullscreen = (bool)fullscreen;
+                }
+                if (_fullscreen){
                     var screen = Screen.AllScreens.First(e => e.Primary);
                     Window.IsBorderless = true;
                     Window.Position = new Point(screen.Bounds.X, screen.Bounds.Y);

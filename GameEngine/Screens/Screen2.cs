@@ -33,7 +33,7 @@ namespace GameEngine
                 CameraDependent = false,
                 Scale = new Vector2(0.3f,0.3f)
             };
-            GameObjects.Add(_ukazatel);
+            GuiObjects.Add(_ukazatel);
             _ukaztelCount = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
@@ -54,15 +54,12 @@ namespace GameEngine
                 CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            GameObjects.Add(_ukaztelCount);
-            GameObjects.Add(_ukazatelFPS);
-            GameObjects.Add(_ukazatelPozice);
+            GuiObjects.Add(_ukaztelCount);
+            GuiObjects.Add(_ukazatelFPS);
+            GuiObjects.Add(_ukazatelPozice);
             GameObjects.Add(new Controleble(this));
-            GameObjects.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
+            GuiObjects.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
             GameObjects.Add(new Soundy(this));
-            foreach (GameObject go in GameObjects){
-                go.LoadContent(contentManager);
-            }
             base.LoadContent();
         }
 

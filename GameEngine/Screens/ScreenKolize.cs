@@ -26,10 +26,6 @@ namespace GameEngine.Screens
             IFollowable foll = new ColidebleMovable(this);
             GameObjects.Add((SpriteObject)foll);
             MainCam = new FollowingCamera(this, foll);
-            foreach (GameObject go in GameObjects)
-            {
-                go.LoadContent(contentManager);
-            }
             base.LoadContent();
         }
 

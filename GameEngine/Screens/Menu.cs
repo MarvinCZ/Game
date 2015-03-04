@@ -26,17 +26,13 @@ namespace GameEngine.Screens
                 ClickableText ct = new ClickableText(this, ((ScreenManager) Game).Screens[i].Name, position, MouseClick){
                     HorizontAlignment = TextObject.TextAlignment.Near
                 };
-                GameObjects.Add(ct);
+                GuiObjects.Add(ct);
             }
             ClickableText end = new ClickableText(this,"Konec", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, Game.GraphicsDevice.Viewport.Bounds.Height - 20),EndGame){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Far
             };
             GameObjects.Add(end);
-            foreach (GameObject go in GameObjects)
-            {
-                go.LoadContent(contentManager);
-            }
             base.LoadContent();
         }
 

@@ -34,16 +34,13 @@ namespace GameEngine
                 CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            GameObjects.Add(_ukazatelFPS);
+            GuiObjects.Add(_ukazatelFPS);
             IFollowable follRect = new Controleble(this);
             GameObjects.Add((SpriteObject)follRect);
             MainCam = new FollowingCamera(this, follRect);
             GameObjects.Add(new MouseFollowing(this));
             GameObjects.Add(new RotujciText(this, "necum", new Vector2(0, 0)));
-            GameObjects.Add(new ClickableText(this, "CLICK ME", new Vector2(200, 200), SwitchScreen));
-            foreach (GameObject go in GameObjects){
-                go.LoadContent(contentManager);
-            }
+            GuiObjects.Add(new ClickableText(this, "CLICK ME", new Vector2(200, 200), SwitchScreen));
             base.LoadContent();
             
         }

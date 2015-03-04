@@ -30,10 +30,6 @@ namespace GameEngine.Screens
             }
             GameObjects.Add(new ColidebleMovable(this));
             MainCam = new FreeCamera(this);
-            foreach (GameObject go in GameObjects)
-            {
-                go.LoadContent(contentManager);
-            }
             base.LoadContent();
         }
 

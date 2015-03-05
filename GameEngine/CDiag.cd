@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.Extensions">
-    <Position X="5" Y="11" Width="1.75" />
+    <Position X="5" Y="11.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions.cs</FileName>
@@ -29,9 +29,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.GameScreen">
-    <Position X="0.75" Y="8.25" Width="2" />
+    <Position X="0.75" Y="8" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAwAEAAEAAAAAgAAAAAAAARAAAgAAAAAAIAAQABAAAQ=</HashCode>
+      <HashCode>AAwAEAAEAAAgAgOAAAAgEARAACgEAAAEAIAAQADAAAQ=</HashCode>
       <FileName>GameScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="GameEngine.GameObjects.SpriteObject">
     <Position X="5" Y="1.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AgQAEEAAAQhAAoAgAAIAoAAAEKgCBgAAQAIAAAgMAAA=</HashCode>
+      <HashCode>AgQAEEAAAQhAAoAgAAIAoAAAEKgGBgAAQAICAAgMAAA=</HashCode>
       <FileName>GameObjects\SpriteObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -68,7 +68,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.GameObjects.ClickableText">
-    <Position X="7.25" Y="8.25" Width="2.25" />
+    <Position X="7.25" Y="7.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\ClickableText.cs</FileName>
@@ -78,7 +78,7 @@
   <Class Name="GameEngine.ScreenManager">
     <Position X="3" Y="9" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>RAQAAAAAAAAAAgAAAIAAAAAAAAAAAAIAAIAAAAAAgAQ=</HashCode>
+      <HashCode>RAQAAAAAAAAAAgCAAIAAAAABAAAAAAIAAIAAAAAAgAQ=</HashCode>
       <FileName>ScreenManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -90,7 +90,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.GameObjects.ClickableSpriteObject">
-    <Position X="5" Y="9" Width="2" />
+    <Position X="5" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\ClickableSpriteObject.cs</FileName>

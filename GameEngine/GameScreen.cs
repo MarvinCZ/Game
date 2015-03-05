@@ -5,6 +5,7 @@ using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 
 namespace GameEngine
@@ -15,15 +16,12 @@ namespace GameEngine
     public abstract class GameScreen{
         private SpriteBatch _spriteBatch;
 
-        private GameObject[] _guiObjekty;
-        private GameObject[] _backgroundObjekty;
-        private GameObject[] _foregroundObjekty;
-        private GameObject[] _objekty;
-
         public MessageBox messageBox;
         protected readonly ContentManager contentManager;
         public readonly Game Game;
         public abstract string Name { get; }
+
+        public List<Layer> Layers = new List<Layer>();
         public List<GameObject> GuiObjects = new List<GameObject>();
         public List<GameObject> ForegroundGameObjects = new List<GameObject>();
         public List<GameObject> GameObjects = new List<GameObject>();
@@ -34,6 +32,11 @@ namespace GameEngine
             Game = screenManager;
             contentManager = new ContentManager(screenManager.Services);
             contentManager.RootDirectory = screenManager.Content.RootDirectory;
+            Layers.Add(new Layer("Background"));
+            Layers.Add(new Layer("SolidObjects"));
+            Layers.Add(new Layer("MovebleObjects"));
+            Layers.Add(new Layer("Foreground"));
+            Layers.Add(new Layer("Gui",false));
         }
 
         /// <summary>
@@ -43,18 +46,14 @@ namespace GameEngine
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            layerLoadContent(ref _backgroundObjekty, BackgroundGameObjects);
-            layerLoadContent(ref _objekty, GameObjects);
-            layerLoadContent(ref _foregroundObjekty, ForegroundGameObjects);
-            layerLoadContent(ref _guiObjekty, GuiObjects);
+            foreach (Layer layer in Layers)
+                layer.LoadContent(contentManager);
         }
 
         public void UnloadContent(){
             contentManager.Unload();
-            layerUnloadContent(ref _backgroundObjekty,ref BackgroundGameObjects);
-            layerUnloadContent(ref _objekty,ref GameObjects);
-            layerUnloadContent(ref _foregroundObjekty,ref ForegroundGameObjects);
-            layerUnloadContent(ref _guiObjekty,ref GuiObjects);
+            foreach (Layer layer in Layers)
+                layer.UnloadContent();
         }
 
         /// <summary>
@@ -68,10 +67,8 @@ namespace GameEngine
                 messageBox.Update(gameTime);
             else
             {
-                layerUpdate(ref _guiObjekty, GuiObjects, gameTime);
-                layerUpdate(ref _foregroundObjekty,ForegroundGameObjects, gameTime);
-                layerUpdate(ref _objekty,GameObjects, gameTime);
-                layerUpdate(ref _backgroundObjekty,BackgroundGameObjects, gameTime);
+                foreach (Layer layer in Layers)
+                    layer.Update(gameTime);
                 if (MainCam != null)
                     MainCam.Update();
             }
@@ -91,78 +88,22 @@ namespace GameEngine
             }
             else
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-            layerDraw(_spriteBatch, _backgroundObjekty, view, gameTime);
-            layerDraw(_spriteBatch, _objekty, view, gameTime);
-            layerDraw(_spriteBatch, _foregroundObjekty, view, gameTime);
+            foreach (Layer layer in Layers)
+                if(layer.CameraDependent)
+                    layer.Draw(gameTime,_spriteBatch,view);
             if (MainCam != null)
             {
                 view = Game.GraphicsDevice.Viewport.Bounds;
                 _spriteBatch.End();
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             }
-            layerDraw(_spriteBatch, _guiObjekty, view, gameTime);
+            foreach (Layer layer in Layers)
+                if (!layer.CameraDependent)
+                    layer.Draw(gameTime, _spriteBatch, view);
             if (messageBox != null && messageBox.Active)
                 messageBox.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
-        }
-        private void layerUpdate(ref GameObject[] objekty,List<GameObject> obj, GameTime gameTime)
-        {
-            if (objekty != null)
-            {
-                if (objekty.Length < obj.Count)
-                {
-                    objekty = new GameObject[(int)(obj.Count * 1.2f)];
-                }
-                int objectCount = obj.Count;
-                for (int i = 0; i < objekty.Length; i++)
-                {
-                    if (i < objectCount)
-                    {
-                        objekty[i] = obj[i];
-                    }
-                    else
-                    {
-                        objekty[i] = null;
-                    }
-                }
-                for (int i = 0; i < objectCount; i++)
-                {
-                    objekty[i].Update(gameTime);
-                }
-            }
-        }
-        private void layerDraw(SpriteBatch sprBatch,GameObject[] objekty,Rectangle view,GameTime gameTime)
-        {
-            int i = 0;
-            while(objekty.Length > i && objekty[i] != null){
-                if(objekty[i] is SpriteObject){
-                    SpriteObject so = (SpriteObject)objekty[i];
-                    if (view.Intersects(so.BoundingBox))
-                        so.Draw(gameTime, sprBatch);
-                }
-                i++;
-            }
-        }
-        private void layerLoadContent(ref GameObject[] objekty, List<GameObject> obj)
-        {
-            if (objekty == null)
-            {
-                objekty = new GameObject[(int)MathHelper.Max(20, obj.Count * 1.2f)];
-            }
-            foreach (GameObject ob in obj)
-            {
-                ob.LoadContent(contentManager);
-            }
-        }
-        private void layerUnloadContent(ref GameObject[] objekty,ref List<GameObject> obj)
-        {
-            foreach (GameObject ob in obj)
-            {
-                ob.UnloadContent();
-            }
-            objekty = null;
-            obj = new List<GameObject>();
         }
     }
 }

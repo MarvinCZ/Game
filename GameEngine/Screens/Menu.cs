@@ -1,6 +1,7 @@
 ﻿using System;
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
+using System.Linq;
 
 namespace GameEngine.Screens
 {
@@ -13,7 +14,8 @@ namespace GameEngine.Screens
             get { return "Menu"; }
         }
 
-        public override void LoadContent(){
+        public override void LoadContent()
+        {
             int count = ((ScreenManager) Game).Screens.Count;
             count--;
             int vzdalenost = 0;
@@ -26,13 +28,13 @@ namespace GameEngine.Screens
                 ClickableText ct = new ClickableText(this, ((ScreenManager) Game).Screens[i].Name, position, MouseClick){
                     HorizontAlignment = TextObject.TextAlignment.Near
                 };
-                GuiObjects.Add(ct);
+                Layers.Single(s => s.Name == "Gui").Objekty.Add(ct);
             }
             ClickableText end = new ClickableText(this,"Konec", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, Game.GraphicsDevice.Viewport.Bounds.Height - 20),EndGame){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Far
             };
-            GameObjects.Add(end);
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(end);
             base.LoadContent();
         }
 

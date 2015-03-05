@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameEngine.GameObjects
 {
@@ -25,7 +26,7 @@ namespace GameEngine.GameObjects
             colideX = false;
             colideY = false;
             //TODO: melo by zmizet
-            if (kolize(gameScreen.GameObjects))
+            if (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
             {
                 Position += smer * rychlost;
             }
@@ -33,13 +34,13 @@ namespace GameEngine.GameObjects
             {
                 smer.Normalize();
                 Position += new Vector2(smer.X, 0) * rychlost;
-                while (kolize(gameScreen.GameObjects))
+                while (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
                 {
                     colideX = true;
                     Position -= new Vector2(smer.X, 0)*0.5f;
                 }
                 Position += new Vector2(0, smer.Y) * rychlost;
-                while (kolize(gameScreen.GameObjects))
+                while (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
                 {
                     colideY = true;
                     Position -= new Vector2(0, smer.Y) * 0.5f;

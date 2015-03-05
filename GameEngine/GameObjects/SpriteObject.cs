@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
@@ -92,7 +93,7 @@ namespace GameEngine.GameObjects
             {
                 if (_camDep != null)
                     return (bool)_camDep;
-                _camDep = !(gameScreen.GuiObjects.Contains(this)||(gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)));
+                _camDep = !(gameScreen.Layers.Where(s=>s.CameraDependent == false && s.Objekty.Contains(this))!=null||(gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)));
                 return (bool)_camDep;
             }
         }

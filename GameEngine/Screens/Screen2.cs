@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.Objects;
@@ -25,14 +26,14 @@ namespace GameEngine
             MainCam = new FreeCamera(this);
             for (int i = 0; i < 0; i++)
             {
-                GameObjects.Add(new Hvezda(this));
+                Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Hvezda(this));
             }
             _ukazatel = new TextObject(this,"5",new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f,0.3f)
             };
-            GuiObjects.Add(_ukazatel);
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatel);
             _ukaztelCount = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
@@ -50,12 +51,12 @@ namespace GameEngine
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            GuiObjects.Add(_ukaztelCount);
-            GuiObjects.Add(_ukazatelFPS);
-            GuiObjects.Add(_ukazatelPozice);
-            GameObjects.Add(new Controleble(this));
-            GuiObjects.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
-            GameObjects.Add(new Soundy(this));
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukaztelCount);
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatelFPS);
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatelPozice);
+            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Controleble(this));
+            Layers.Single(s => s.Name == "Gui").Objekty.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
+            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Soundy(this));
             base.LoadContent();
         }
 
@@ -106,9 +107,9 @@ namespace GameEngine
                 //}
                 for (int j = 0; j < 20; j++)
                 {
-                    Star s = new Star(this);
-                    s.LoadContent(contentManager);
-                    GameObjects.Add(s);
+                    Star star = new Star(this);
+                    star.LoadContent(contentManager);
+                    Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(star);
                 }
 
                 int i = (int)((Camera)MainCam).MoveSpeed;

@@ -19,16 +19,16 @@ namespace GameEngine.Screens
 
         public override void LoadContent()
         {
-            GameObjects.Add(new Box(this, new Vector2(-500, -500), new Vector2(500, -498)));
-            GameObjects.Add(new Box(this, new Vector2(-500, -500), new Vector2(-498, 500)));
-            GameObjects.Add(new Box(this, new Vector2(-500, 498), new Vector2(500, 500)));
-            GameObjects.Add(new Box(this, new Vector2(498, -500), new Vector2(500, 500)));
-            GameObjects.Add(new Box(this, new Vector2(-250, -30), new Vector2(250, -28)));
+            Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new Box(this, new Vector2(-500, -500), new Vector2(500, -498)));
+            Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new Box(this, new Vector2(-500, -500), new Vector2(-498, 500)));
+            Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new Box(this, new Vector2(-500, 498), new Vector2(500, 500)));
+            Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new Box(this, new Vector2(498, -500), new Vector2(500, 500)));
+            Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new Box(this, new Vector2(-250, -30), new Vector2(250, -28)));
             for (int i = 0; i < 50; i++)
             {
-                GameObjects.Add(new Bounci(this));
+                Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Bounci(this));
             }
-            GameObjects.Add(new ColidebleMovable(this));
+            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new ColidebleMovable(this));
             MainCam = new FreeCamera(this);
             base.LoadContent();
         }

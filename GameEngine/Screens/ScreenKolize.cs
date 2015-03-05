@@ -21,10 +21,10 @@ namespace GameEngine.Screens
         {
             for (int i = 0; i < 1000; i++)
             {
-                GameObjects.Add(new ColidableRectangle(this));
+                Layers.Single(s => s.Name == "SolidObjects").Objekty.Add(new ColidableRectangle(this));
             }
             IFollowable foll = new ColidebleMovable(this);
-            GameObjects.Add((SpriteObject)foll);
+            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add((SpriteObject)foll);
             MainCam = new FollowingCamera(this, foll);
             base.LoadContent();
         }

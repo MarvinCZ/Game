@@ -45,6 +45,7 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="GameObjects\ClickableSpriteObject.cs" />
     <Compile Include="GameObjects\ClickableText.cs" />
+    <Compile Include="GameObjects\Layer.cs" />
     <Compile Include="GameObjects\MessageBox.cs" />
     <Compile Include="HelpObjects\ColisionBox.cs" />
     <Compile Include="HelpObjects\Sound.cs" />

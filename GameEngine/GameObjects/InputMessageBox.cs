@@ -62,10 +62,10 @@ namespace GameEngine.GameObjects
             float lengh = input.BoundingBox.Width;
             if (lengh < 100f)
                 lengh = 100f;
-            lengh += okButton.BoundingBox.Width;
+            lengh += Buttons[0].BoundingBox.Width;
             lengh += 15f;
             if (storno)
-                lengh += stornoButton.BoundingBox.Width;
+                lengh += Buttons[1].BoundingBox.Width;
             if (lengh < message.BoundingBox.Width)
                 lengh = message.BoundingBox.Width;
             Scale = new Vector2((lengh / Texture.Width) + 0.2f, 1);
@@ -80,10 +80,10 @@ namespace GameEngine.GameObjects
         public override void LoadContent(ContentManager content)
         {
             message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
-            okButton.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            ((ClickableText)Buttons[0]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Texture = content.Load<Texture2D>("BackGrounds/MessageBox");
             input.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
-            stornoButton.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            ((ClickableText)Buttons[1]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Reposition();
         }
 
@@ -94,11 +94,11 @@ namespace GameEngine.GameObjects
                 game.GraphicsDevice.Viewport.Bounds.Height / 2f);
             float width = (Texture.Width*Scale.X)/2f;
             Vector2 position = new Vector2(width - 10f, Texture.Height/4f);
-            okButton.Position = Position + position;
-            okButton.HorizontAlignment = TextObject.TextAlignment.Far;
-            position = new Vector2(width - 20f - okButton.BoundingBox.Width, Texture.Height / 4f);
-            stornoButton.Position = Position + position;
-            stornoButton.HorizontAlignment = TextObject.TextAlignment.Far;
+            ((ClickableText)Buttons[0]).Position = Position + position;
+            ((ClickableText)Buttons[0]).HorizontAlignment = TextObject.TextAlignment.Far;
+            position = new Vector2(width - 20f - ((ClickableText)Buttons[0]).BoundingBox.Width, Texture.Height / 4f);
+            ((ClickableText)Buttons[1]).Position = Position + position;
+            ((ClickableText)Buttons[1]).HorizontAlignment = TextObject.TextAlignment.Far;
             position = new Vector2(-width + 10f, Texture.Height/4f);
             input.Position = Position + position;
             input.HorizontAlignment = TextObject.TextAlignment.Near;

@@ -31,7 +31,6 @@ namespace GameEngine
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
-                CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
             GuiObjects.Add(_ukazatelFPS);

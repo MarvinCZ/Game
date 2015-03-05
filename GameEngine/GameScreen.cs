@@ -20,7 +20,7 @@ namespace GameEngine
         private GameObject[] _foregroundObjekty;
         private GameObject[] _objekty;
 
-        protected MessageBox messageBox;
+        public MessageBox messageBox;
         protected readonly ContentManager contentManager;
         public readonly Game Game;
         public abstract string Name { get; }

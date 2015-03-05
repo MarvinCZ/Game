@@ -18,6 +18,7 @@ namespace GameEngine.GameObjects
         protected int spriteColorG;
         protected int spriteColorB;
         protected float spriteColorAlfa = 1f;
+        private bool? _camDep = null;
         private Texture2D _texture;
         protected bool solid = false;
         private Rectangle _boundingBox;
@@ -86,7 +87,15 @@ namespace GameEngine.GameObjects
         /// <summary>
         /// Meni se pozice vykresleni v zavislosti na kamere
         /// </summary>
-        public bool CameraDependent { get; set; }
+        public bool CameraDependent {
+            get
+            {
+                if (_camDep != null)
+                    return (bool)_camDep;
+                _camDep = !(gameScreen.GuiObjects.Contains(this)||(gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)));
+                return (bool)_camDep;
+            }
+        }
         /// <summary>
         /// rotace objektu v radianech
         /// </summary>
@@ -146,7 +155,6 @@ namespace GameEngine.GameObjects
         protected SpriteObject(GameScreen game) : base(game){
             Scale = Vector2.One;
             SpriteColor = Color.White;
-            CameraDependent = true;
             sounds = new List<Sound>();
         }
 

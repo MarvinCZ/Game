@@ -14,18 +14,16 @@ namespace GameEngine.GameObjects
             : base(game, text, pozice, color){
             if (mouseClick != null)
                 MouseClick += mouseClick;
-            CameraDependent = false;
         }
 
         public ClickableText(GameScreen game, string text, Vector2 pozice, EventHandler mouseClick = null)
             : base(game, text, pozice){
             if (mouseClick != null)
                 MouseClick += mouseClick;
-            CameraDependent = false;
         }
 
         public override void Update(GameTime gameTime){
-            Update(gameTime, CameraDependent ? gameScreen.MainCam.TransformMatrix : Matrix.Identity);
+            Update(gameTime, (CameraDependent && gameScreen.MainCam!=null) ? gameScreen.MainCam.TransformMatrix : Matrix.Identity);
         }
 
         public void Update(GameTime gameTime, Matrix transform){

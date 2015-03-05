@@ -30,28 +30,24 @@ namespace GameEngine
             _ukazatel = new TextObject(this,"5",new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
-                CameraDependent = false,
                 Scale = new Vector2(0.3f,0.3f)
             };
             GuiObjects.Add(_ukazatel);
             _ukaztelCount = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
-                CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
             _ukazatelFPS = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 50))
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
-                CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
             _ukazatelPozice = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 70))
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
-                CameraDependent = false,
                 Scale = new Vector2(0.3f, 0.3f)
             };
             GuiObjects.Add(_ukaztelCount);

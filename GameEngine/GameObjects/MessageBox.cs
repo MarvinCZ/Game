@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,8 +9,7 @@ namespace GameEngine.GameObjects
 {
     public class MessageBox : SpriteObject{
         protected readonly TextObject message;
-        protected readonly ClickableText okButton;
-        protected readonly ClickableText stornoButton;
+        public List<SpriteObject> Buttons = new List<SpriteObject>();
         protected bool storno;
         public Result MessageResult;
 
@@ -17,8 +17,8 @@ namespace GameEngine.GameObjects
         public bool Active { get; private set; }
         public MessageBox(GameScreen game, String message, bool storno = true) : base(game){
             this.message = new TextObject(game,message,Color.Red);
-            okButton = new ClickableText(game, "OK", new Vector2(), Color.Red, MouseOkClick);
-            stornoButton = new ClickableText(game, "STORNO", new Vector2(), Color.Red, MouseStornoClick);
+            Buttons.Add(new ClickableText(game, "OK", new Vector2(), Color.Red, MouseOkClick));
+            Buttons.Add(new ClickableText(game, "STORNO", new Vector2(), Color.Red, MouseStornoClick));
             this.storno = storno;
             Active = true;
         }
@@ -48,9 +48,9 @@ namespace GameEngine.GameObjects
         public override void Update(GameTime gameTime){
             base.Update(gameTime);
             message.Update(gameTime);
-            okButton.Update(gameTime);
+            Buttons[0].Update(gameTime);
             if (storno){
-                stornoButton.Update(gameTime);
+                Buttons[1].Update(gameTime);
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape)){
                     MouseStornoClick(null,new EventArgs());
                 }
@@ -62,15 +62,15 @@ namespace GameEngine.GameObjects
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch){
             base.Draw(gameTime, spriteBatch);
             message.Draw(gameTime,spriteBatch);
-            okButton.Draw(gameTime,spriteBatch);
+            Buttons[0].Draw(gameTime, spriteBatch);
             if(storno)
-                stornoButton.Draw(gameTime,spriteBatch);
+                Buttons[1].Draw(gameTime, spriteBatch);
         }
 
         public override void LoadContent(ContentManager content){
             message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
-            okButton.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
-            stornoButton.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            ((ClickableText)Buttons[0]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            ((ClickableText)Buttons[1]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Texture = content.Load<Texture2D>("BackGrounds/MessageBox");
             Reposition();
         }
@@ -86,16 +86,16 @@ namespace GameEngine.GameObjects
                 game.GraphicsDevice.Viewport.Bounds.Height / 2f);
             Vector2 position = new Vector2(0f,Texture.Height/4f);
             message.Position = Position - position;
-            float celek = okButton.BoundingBox.Width;
+            float celek = Buttons[0].BoundingBox.Width;
             if(storno)
-                celek += 20f + stornoButton.BoundingBox.Width;
+                celek += 20f + Buttons[1].BoundingBox.Width;
             celek /= 2;
             position = new Vector2(-celek, Texture.Height / 4f);
-            okButton.Position = Position + position;
-            okButton.HorizontAlignment = TextObject.TextAlignment.Near;
+            Buttons[0].Position = Position + position;
+            ((ClickableText)Buttons[0]).HorizontAlignment = TextObject.TextAlignment.Near;
             position = new Vector2(celek, Texture.Height / 4f);
-            stornoButton.Position = Position + position;
-            stornoButton.HorizontAlignment = TextObject.TextAlignment.Far;
+            Buttons[1].Position = Position + position;
+            ((ClickableText)Buttons[1]).HorizontAlignment = TextObject.TextAlignment.Far;
 
         }
 

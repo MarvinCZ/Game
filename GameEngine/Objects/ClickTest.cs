@@ -14,7 +14,6 @@ namespace GameEngine.Objects
         public ClickTest(GameScreen game, EventHandler eventHandler = null) : base(game){
             MouseClick += eventHandler;
             SpriteColor = Color.Purple;
-            CameraDependent = false;
         }
 
         public ClickTest(GameScreen game, Vector2 position, EventHandler eventHandler = null)

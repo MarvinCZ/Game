@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -30,7 +31,7 @@ namespace GameEngine.Objects
             base.Update(gameTime);
             _zivot--;
             if (_zivot < 0){
-                gameScreen.GameObjects.Remove(this);
+                gameScreen.Layers.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
             }
             if (_zivot%50 == 0)
                 _smer *= -1;

@@ -22,10 +22,6 @@ namespace GameEngine
         public abstract string Name { get; }
 
         public List<Layer> Layers = new List<Layer>();
-        public List<GameObject> GuiObjects = new List<GameObject>();
-        public List<GameObject> ForegroundGameObjects = new List<GameObject>();
-        public List<GameObject> GameObjects = new List<GameObject>();
-        public List<GameObject> BackgroundGameObjects = new List<GameObject>();
         public Camera MainCam { get; protected set; }
 
         protected GameScreen(ScreenManager screenManager){

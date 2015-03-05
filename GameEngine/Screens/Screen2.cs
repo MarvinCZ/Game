@@ -114,7 +114,10 @@ namespace GameEngine
 
                 int i = (int)((Camera)MainCam).MoveSpeed;
                 _ukazatel.Text = i + " Camera Speed";
-                _ukaztelCount.Text = GameObjects.Count + " Objects";
+                int count = 0;
+                foreach (Layer layer in Layers)
+                    count += layer.Objekty.Count();
+                _ukaztelCount.Text = count + " Objects";
                 _ukazatelPozice.Text = "X: " + (int)mousePos.X + " Y: " + (int)mousePos.Y;
             }
 

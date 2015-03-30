@@ -14,7 +14,7 @@ namespace GameEngine.GameObjects
 
         public void Update(GameTime gametime, Matrix transform){
             base.Update(gametime);
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && Mouse.GetState().LeftButton != ((ScreenManager)GameScreen.ScreenManager).LastMouseState.LeftButton)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && Mouse.GetState().LeftButton != GameScreen.ScreenManager.LastMouseState.LeftButton)
             {
                 Vector2 mouse = Mouse.GetState().Position.ToVector2();
                 Matrix inversTransform = Matrix.Invert(transform);

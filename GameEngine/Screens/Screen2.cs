@@ -68,7 +68,7 @@ namespace GameEngine
             MessageBox mb = (MessageBox) sender;
             MessageBox = null;
             if(mb.MessageResult == MessageBox.Result.Ok)
-                ((ScreenManager)ScreenManager).ActiveScreen<MenuScreen>();
+                ScreenManager.ActiveScreen<MenuScreen>();
         }
 
         void OpenMessageBox(object sender, EventArgs e){

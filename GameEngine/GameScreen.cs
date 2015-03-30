@@ -15,7 +15,7 @@ namespace GameEngine
 
         public MessageBox MessageBox;
         protected readonly ContentManager ContentManager;
-        public readonly Game ScreenManager;
+        public readonly ScreenManager ScreenManager;
         public abstract string Name { get; }
 
         public readonly Dictionary<string,Layer> Layers = new Dictionary<string, Layer>();

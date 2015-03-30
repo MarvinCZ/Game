@@ -46,7 +46,7 @@ namespace GameEngine
 
         void SwitchScreen(object sender, EventArgs e)
         {
-            ((ScreenManager)ScreenManager).ActiveScreen<MenuScreen>();
+            ScreenManager.ActiveScreen<MenuScreen>();
         }
 
         public override void Draw(GameTime gameTime)

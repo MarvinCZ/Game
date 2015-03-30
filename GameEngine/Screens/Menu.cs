@@ -15,7 +15,7 @@ namespace GameEngine.Screens
 
         public override void LoadContent()
         {
-            int count = ((ScreenManager) ScreenManager).Screens.Count;
+            int count = ScreenManager.Screens.Count;
             count--;
             int vzdalenost = 0;
             if(count != 0)
@@ -24,7 +24,7 @@ namespace GameEngine.Screens
                 int y = i*vzdalenost;
                 y += vzdalenost/2;
                 Vector2 position = new Vector2(60,y);
-                ClickableText ct = new ClickableText(this, ((ScreenManager) ScreenManager).Screens[i].Name, position, MouseClick){
+                ClickableText ct = new ClickableText(this, ScreenManager.Screens[i].Name, position, MouseClick){
                     HorizontAlignment = TextObject.TextAlignment.Near
                 };
                 Layers["Gui"].Objekty.Add(ct);
@@ -44,7 +44,7 @@ namespace GameEngine.Screens
         }
 
         void MouseClick(object sender, EventArgs e){
-            ((ScreenManager)ScreenManager).ActiveScreen(((ClickableText)sender).Text);
+            ScreenManager.ActiveScreen(((ClickableText)sender).Text);
         }
 
         void EndGame(object sender, EventArgs e){

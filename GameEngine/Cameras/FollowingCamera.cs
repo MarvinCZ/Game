@@ -17,21 +17,21 @@ namespace GameEngine.Cameras
         public FollowingCamera(GameScreen game,IFollowable followable,float moveSpeed = 0.03f) : base(game){
             MoveSpeed = moveSpeed;
             _followable = followable;
-            reCalc = true;
+            NeedRecalculation = true;
         }
 
         public override void Update()
         {
             base.Update();
-            Vector2 difference = _followable.Position - position;
+            Vector2 difference = _followable.Position - Position;
             if (difference.Length() <= 1f){
-                position = _followable.Position;
+                Position = _followable.Position;
             }
             else{
                 difference *= MoveSpeed;
-                position += difference;
+                Position += difference;
             }
-            reCalc = difference.Length() != 0;
+            NeedRecalculation = difference.Length() != 0;
         }
     }
 }

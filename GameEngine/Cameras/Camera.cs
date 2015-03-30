@@ -5,12 +5,12 @@ namespace GameEngine.Cameras
 {
     public abstract class Camera{
         private float _moveSpeed;
-        protected bool reCalc;
-        protected float rotation;
-        protected float zoom;
-        protected Matrix transformMatrix;
-        protected Vector2 position;
-        protected readonly Game game;
+        protected bool NeedRecalculation;
+        private float _rotation;
+        private float _zoom;
+        private Matrix _transformMatrix;
+        public Vector2 Position { get; protected set; }
+        protected readonly ScreenManager ScreenManager;
 
         public float MoveSpeed
         {
@@ -18,31 +18,23 @@ namespace GameEngine.Cameras
             protected set { _moveSpeed = value < 0 ? 0 : value; }
         }
         /// <summary>
-        /// pozice puuzita pro rotaci a zoom
-        /// </summary>
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-        /// <summary>
         /// urcuje rotaci kamery v radianech
         /// </summary>
         public float Rotation
         {
-            get { return rotation; }
+            get { return _rotation; }
             set
             {
-                rotation = value;
-                while (rotation > MathHelper.Pi)
+                _rotation = value;
+                while (_rotation > MathHelper.Pi)
                 {
-                    rotation -= MathHelper.TwoPi;
+                    _rotation -= MathHelper.TwoPi;
                 }
-                while (rotation < -MathHelper.Pi)
+                while (_rotation < -MathHelper.Pi)
                 {
-                    rotation += MathHelper.TwoPi;
+                    _rotation += MathHelper.TwoPi;
                 }
-                reCalc = true;
+                NeedRecalculation = true;
             }
         }
         /// <summary>
@@ -50,19 +42,19 @@ namespace GameEngine.Cameras
         /// </summary>
         public float Zoom
         {
-            get { return zoom; }
+            get { return _zoom; }
             set
             {
-                zoom = value;
-                if (zoom < 0.1f)
-                    zoom = 0.1f;
-                reCalc = true;
+                _zoom = value;
+                if (_zoom < 0.1f)
+                    _zoom = 0.1f;
+                NeedRecalculation = true;
             }
         }
         /// <summary>
         /// matice pro transofmaci vykreslovaci plochy
         /// </summary>
-        public Matrix TransformMatrix { get { return transformMatrix; } }
+        public Matrix TransformMatrix { get { return _transformMatrix; } }
         /// <summary>
         /// vrati souradnice centra
         /// </summary>
@@ -70,8 +62,8 @@ namespace GameEngine.Cameras
             get
             {
                 return new Vector2(
-                    game.GraphicsDevice.Viewport.Bounds.Width / 2f,
-                    game.GraphicsDevice.Viewport.Bounds.Height / 2f);
+                    ScreenManager.GraphicsDevice.Viewport.Bounds.Width / 2f,
+                    ScreenManager.GraphicsDevice.Viewport.Bounds.Height / 2f);
             }
         }
         /// <summary>
@@ -84,10 +76,11 @@ namespace GameEngine.Cameras
         public Rectangle ViewRectangle { get; protected set; }
 
         protected Camera(GameScreen game){
+            Position = new Vector2();
             Rotation = 0f;
             Zoom = 1f;
-            this.game = game.ScreenManager;
-            reCalc = true;
+            ScreenManager = game.ScreenManager;
+            NeedRecalculation = true;
         }
         /// <summary>
         /// prepocitani matice
@@ -106,16 +99,16 @@ namespace GameEngine.Cameras
                 MoveSpeed += 0.01f;
             if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.CamMoveSpeedMinus))
                 MoveSpeed -= 0.01f;
-            if (reCalc){
-                transformMatrix = Matrix.Identity*
-                                  Matrix.CreateTranslation(-position.X, -position.Y, 0)*
-                                  Matrix.CreateRotationZ(rotation)*
+            if (NeedRecalculation){
+                _transformMatrix = Matrix.Identity*
+                                  Matrix.CreateTranslation(-Position.X, -Position.Y, 0)*
+                                  Matrix.CreateRotationZ(_rotation)*
                                   Matrix.CreateTranslation(Origin.X, Origin.Y, 0)*
-                                  Matrix.CreateScale(zoom, zoom, zoom);
+                                  Matrix.CreateScale(_zoom, _zoom, _zoom);
 
                 Vector2 from;
                 Vector2 to;
-                Rectangle view = game.GraphicsDevice.Viewport.Bounds;
+                Rectangle view = ScreenManager.GraphicsDevice.Viewport.Bounds;
                 if (Rotation == 0){
                     from = GameHelper.Instance.RealVector2(new Vector2(-200, -200), TransformMatrix);
                     to = GameHelper.Instance.RealVector2(new Vector2(view.Width + 200, view.Height + 200),
@@ -148,7 +141,7 @@ namespace GameEngine.Cameras
                 }
                 ViewRectangle = new Rectangle((int) from.X, (int) from.Y, (int) to.X - (int) from.X,
                     (int) to.Y - (int) from.Y);
-                reCalc = false;
+                NeedRecalculation = false;
             }
         }
     }

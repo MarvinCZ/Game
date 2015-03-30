@@ -26,14 +26,14 @@ namespace GameEngine
             MainCam = new FreeCamera(this);
             for (int i = 0; i < 0; i++)
             {
-                Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Hvezda(this));
+                Layers["MovebleObjects"].Objekty.Add(new Hvezda(this));
             }
             _ukazatel = new TextObject(this,"5",new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f,0.3f)
             };
-            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatel);
+            Layers["Gui"].Objekty.Add(_ukazatel);
             _ukaztelCount = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
@@ -51,12 +51,12 @@ namespace GameEngine
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukaztelCount);
-            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatelFPS);
-            Layers.Single(s => s.Name == "Gui").Objekty.Add(_ukazatelPozice);
-            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Controleble(this));
-            Layers.Single(s => s.Name == "Gui").Objekty.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
-            Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(new Soundy(this));
+            Layers["Gui"].Objekty.Add(_ukaztelCount);
+            Layers["Gui"].Objekty.Add(_ukazatelFPS);
+            Layers["Gui"].Objekty.Add(_ukazatelPozice);
+            Layers["MovebleObjects"].Objekty.Add(new Controleble(this));
+            Layers["Gui"].Objekty.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
+            Layers["MovebleObjects"].Objekty.Add(new Soundy(this));
             base.LoadContent();
         }
 
@@ -109,13 +109,13 @@ namespace GameEngine
                 {
                     Star star = new Star(this);
                     star.LoadContent(contentManager);
-                    Layers.Single(s => s.Name == "MovebleObjects").Objekty.Add(star);
+                    Layers["MovebleObjects"].Objekty.Add(star);
                 }
 
                 int i = (int)((Camera)MainCam).MoveSpeed;
                 _ukazatel.Text = i + " Camera Speed";
                 int count = 0;
-                foreach (Layer layer in Layers)
+                foreach (Layer layer in Layers.Values)
                     count += layer.Objekty.Count();
                 _ukaztelCount.Text = count + " Objects";
                 _ukazatelPozice.Text = "X: " + (int)mousePos.X + " Y: " + (int)mousePos.Y;

@@ -19,13 +19,13 @@ namespace GameEngine.GameObjects
         public List<GameObject> Objekty = new List<GameObject>();
         public bool CameraDependent { get; protected set; }
         public string Name { get; set; }
-        public Layer(string name,bool cameraDependent = true)
+        public Layer(bool cameraDependent = true)
         {
-            Name = name;
             CameraDependent = cameraDependent;
         }
-        public void LoadContent(ContentManager contentManager)
+        public void LoadContent(ContentManager contentManager,string name)
         {
+            Name = name;
             if (_objekty == null)
             {
                 _objekty = new GameObject[(int)MathHelper.Max(20, Objekty.Count * 1.2f)];

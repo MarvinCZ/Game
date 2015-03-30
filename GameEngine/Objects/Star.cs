@@ -39,7 +39,7 @@ namespace GameEngine.Objects
         public override void Update(GameTime gameTime){
             _zivot--;
             if (_zivot < 0){
-                gameScreen.Layers.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
+                gameScreen.Layers.Values.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
             }
             Position += _smer*_rychlost;
             Scale *= scaling;

@@ -26,7 +26,7 @@ namespace GameEngine.GameObjects
             colideX = false;
             colideY = false;
             //TODO: melo by zmizet
-            if (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
+            if (kolize(gameScreen.Layers["SolidObjects"].Objekty))
             {
                 Position += smer * rychlost;
             }
@@ -34,13 +34,13 @@ namespace GameEngine.GameObjects
             {
                 smer.Normalize();
                 Position += new Vector2(smer.X, 0) * rychlost;
-                while (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
+                while (kolize(gameScreen.Layers["SolidObjects"].Objekty) || kolize(gameScreen.Layers["MovebleObjects"].Objekty))
                 {
                     colideX = true;
                     Position -= new Vector2(smer.X, 0)*0.5f;
                 }
                 Position += new Vector2(0, smer.Y) * rychlost;
-                while (kolize(gameScreen.Layers.Single(s => s.Name == "SolidObjects").Objekty))
+                while (kolize(gameScreen.Layers["SolidObjects"].Objekty) || kolize(gameScreen.Layers["MovebleObjects"].Objekty))
                 {
                     colideY = true;
                     Position -= new Vector2(0, smer.Y) * 0.5f;

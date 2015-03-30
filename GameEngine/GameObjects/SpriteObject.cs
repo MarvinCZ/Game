@@ -93,7 +93,11 @@ namespace GameEngine.GameObjects
             {
                 if (_camDep != null)
                     return (bool)_camDep;
-                _camDep = !(gameScreen.Layers.Where(s=>s.CameraDependent == false && s.Objekty.Contains(this))!=null||(gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)));
+                _camDep = true;
+                if (gameScreen.Layers.Values.Any(layer => !layer.CameraDependent && layer.Objekty.Contains(this)) || (gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)))
+                {
+                    _camDep = false;
+                }
                 return (bool)_camDep;
             }
         }

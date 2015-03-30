@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 
 
 namespace GameEngine
@@ -21,18 +22,18 @@ namespace GameEngine
         public readonly Game Game;
         public abstract string Name { get; }
 
-        public List<Layer> Layers = new List<Layer>();
+        public readonly Dictionary<string,Layer> Layers = new Dictionary<string, Layer>();
         public Camera MainCam { get; protected set; }
 
         protected GameScreen(ScreenManager screenManager){
             Game = screenManager;
             contentManager = new ContentManager(screenManager.Services);
             contentManager.RootDirectory = screenManager.Content.RootDirectory;
-            Layers.Add(new Layer("Background"));
-            Layers.Add(new Layer("SolidObjects"));
-            Layers.Add(new Layer("MovebleObjects"));
-            Layers.Add(new Layer("Foreground"));
-            Layers.Add(new Layer("Gui",false));
+            Layers["Background"] = new Layer();
+            Layers["SolidObjects"] = new Layer();
+            Layers["MovebleObjects"] = new Layer();
+            Layers["Foreground"] = new Layer();
+            Layers["Gui"] = new Layer(false);
         }
 
         /// <summary>
@@ -42,14 +43,18 @@ namespace GameEngine
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            foreach (Layer layer in Layers)
-                layer.LoadContent(contentManager);
+            foreach (KeyValuePair<string, Layer> layer in Layers)
+            {
+                layer.Value.LoadContent(contentManager,layer.Key);
+            }
         }
 
         public void UnloadContent(){
             contentManager.Unload();
-            foreach (Layer layer in Layers)
+            foreach (Layer layer in Layers.Values)
+            {
                 layer.UnloadContent();
+            }
         }
 
         /// <summary>
@@ -63,7 +68,8 @@ namespace GameEngine
                 messageBox.Update(gameTime);
             else
             {
-                foreach (Layer layer in Layers)
+
+                foreach (Layer layer in Layers.Values)
                     layer.Update(gameTime);
                 if (MainCam != null)
                     MainCam.Update();
@@ -84,7 +90,7 @@ namespace GameEngine
             }
             else
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-            foreach (Layer layer in Layers)
+            foreach (Layer layer in Layers.Values)
                 if(layer.CameraDependent)
                     layer.Draw(gameTime,_spriteBatch,view);
             if (MainCam != null)
@@ -93,7 +99,7 @@ namespace GameEngine
                 _spriteBatch.End();
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             }
-            foreach (Layer layer in Layers)
+            foreach (Layer layer in Layers.Values)
                 if (!layer.CameraDependent)
                     layer.Draw(gameTime, _spriteBatch, view);
             if (messageBox != null && messageBox.Active)

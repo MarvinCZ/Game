@@ -1,8 +1,5 @@
-﻿using System;
-using GameEngine.GameObjects;
+﻿using GameEngine.GameObjects;
 using GameEngine.HelpObjects;
-using GameEngine;
-using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,29 +13,29 @@ namespace GameEngine.Objects
         bool Gup;
         bool Bup;
         public ColidableRectangle(GameScreen screen) : base(screen) {
-            positionX = GameHelper.Instance.RandomNext(-2000f, 2000f);
-            positionY = GameHelper.Instance.RandomNext(-2000f, 2000f);
-            spriteColorR = GameHelper.Instance.RandomNext(60, 240);
-            spriteColorG = GameHelper.Instance.RandomNext(60, 240);
-            spriteColorB = GameHelper.Instance.RandomNext(60, 240);
+            PositionX = GameHelper.Instance.RandomNext(-2000f, 2000f);
+            PositionY = GameHelper.Instance.RandomNext(-2000f, 2000f);
+            SpriteColorR = GameHelper.Instance.RandomNext(60, 240);
+            SpriteColorG = GameHelper.Instance.RandomNext(60, 240);
+            SpriteColorB = GameHelper.Instance.RandomNext(60, 240);
             if (GameHelper.Instance.RandomBool(0.8f))
             {
                 float scale = GameHelper.Instance.RandomNext(0.5f, 2f);
                 Scale = new Vector2(scale, scale);
-                colisionBox = new ColisionBox(this, ColisionBox.BoxType.Circle);
+                ColisionBox = new ColisionBox(this, ColisionBox.BoxType.Circle);
                 typ = 0;
             }
             else
             {
                 float scale = GameHelper.Instance.RandomNext(0.5f, 5f);
                 Scale = new Vector2(GameHelper.Instance.RandomNext(0.5f, 5f), scale);
-                colisionBox = new ColisionBox(this);
+                ColisionBox = new ColisionBox(this);
                 typ = 1;
             }
             Rup = GameHelper.Instance.RandomBool(0.5f);
             Gup = GameHelper.Instance.RandomBool(0.5f);
             Bup = GameHelper.Instance.RandomBool(0.5f);
-            solid = true;
+            Solid = true;
         }
 
     
@@ -55,33 +52,33 @@ namespace GameEngine.Objects
 
         public override void Update(GameTime gameTime)
         {
-            spriteColorR += Rup ? 1 : -1;
-            spriteColorG += Gup ? 1 : -1;
-            spriteColorB += Bup ? 1 : -1;
-            if (spriteColorR > 240)
+            SpriteColorR += Rup ? 1 : -1;
+            SpriteColorG += Gup ? 1 : -1;
+            SpriteColorB += Bup ? 1 : -1;
+            if (SpriteColorR > 240)
                 Rup = false;
-            if (spriteColorG > 240)
+            if (SpriteColorG > 240)
                 Gup = false;
-            if (spriteColorB > 240)
+            if (SpriteColorB > 240)
                 Bup = false;
-            if (spriteColorR < 60)
+            if (SpriteColorR < 60)
                 Rup = true;
-            if (spriteColorG < 60)
+            if (SpriteColorG < 60)
                 Gup = true;
-            if (spriteColorB < 60)
+            if (SpriteColorB < 60)
                 Bup = true;
         }
 
         public void OnColide(SpriteObject obj){
-            spriteColorR += 5;
-            spriteColorG -= 5;
-            spriteColorB += 5;
-            if (spriteColorR > 255)
-                spriteColorR = 0;
-            if (spriteColorG < 0)
-                spriteColorG = 255;
-            if (spriteColorB > 255)
-                spriteColorB = 0;
+            SpriteColorR += 5;
+            SpriteColorG -= 5;
+            SpriteColorB += 5;
+            if (SpriteColorR > 255)
+                SpriteColorR = 0;
+            if (SpriteColorG < 0)
+                SpriteColorG = 255;
+            if (SpriteColorB > 255)
+                SpriteColorB = 0;
         }
     }
 }

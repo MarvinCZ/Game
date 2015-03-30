@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.Objects;
@@ -28,7 +27,7 @@ namespace GameEngine
             {
                 Layers["MovebleObjects"].Objekty.Add(new Ctverec(this));
             }
-            _ukazatelFPS = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 10))
+            _ukazatelFPS = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10))
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
@@ -47,7 +46,7 @@ namespace GameEngine
 
         void SwitchScreen(object sender, EventArgs e)
         {
-            ((ScreenManager)Game).ActiveScreen<MenuScreen>();
+            ((ScreenManager)ScreenManager).ActiveScreen<MenuScreen>();
         }
 
         public override void Draw(GameTime gameTime)
@@ -59,7 +58,7 @@ namespace GameEngine
                 _ukazatelFPS.Text = _updates + " FPS";
                 _updates = 0;
             }
-            Game.GraphicsDevice.Clear(Color.Black);
+            ScreenManager.GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
     }

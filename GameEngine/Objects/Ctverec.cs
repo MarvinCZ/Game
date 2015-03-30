@@ -16,7 +16,7 @@ namespace GameEngine.Objects
         public Ctverec(GameScreen game)
             : base(game){
             RestrartMe();
-            //_box = new Box(game,new Vector2(),new Vector2());
+            //_box = new Box(ScreenManager,new Vector2(),new Vector2());
         }
 
         public float MoveSpeed{
@@ -29,10 +29,10 @@ namespace GameEngine.Objects
                 Position += new Vector2(0,MoveSpeed);
                 _moveSpeed += 0.15f;
                 Scale = new Vector2(Scale.X*0.99f, Scale.Y*0.99f);
-                spriteColorAlfa -= 0.005f;
+                SpriteColorAlfa -= 0.005f;
 
-            if ((positionY - Texture.Height > game.GraphicsDevice.Viewport.Bounds.Height && MoveSpeed > 0f) ||
-                spriteColorAlfa <= 0f){
+            if ((PositionY - Texture.Height > ScreenManager.GraphicsDevice.Viewport.Bounds.Height && MoveSpeed > 0f) ||
+                SpriteColorAlfa <= 0f){
                 RestrartMe();
                 }
             //_box.point1 = new Vector2(BoundingBox.X, BoundingBox.Y);
@@ -47,9 +47,9 @@ namespace GameEngine.Objects
         //}
 
         void RestrartMe(){
-            spriteColorAlfa = 1f;
+            SpriteColorAlfa = 1f;
             Scale = new Vector2(5f, 5f);
-            positionX = GameHelper.Instance.RandomNext(-2 * game.GraphicsDevice.Viewport.Bounds.Width, 2 * game.GraphicsDevice.Viewport.Bounds.Width);
+            PositionX = GameHelper.Instance.RandomNext(-2 * ScreenManager.GraphicsDevice.Viewport.Bounds.Width, 2 * ScreenManager.GraphicsDevice.Viewport.Bounds.Width);
             SpriteColor = new Color(0, GameHelper.Instance.RandomNext(70, 220), 0);
 
             do{
@@ -64,9 +64,9 @@ namespace GameEngine.Objects
             if(Texture != null)
             {
                 if (MoveSpeed < 0){
-                    positionY = Texture.Height + game.GraphicsDevice.Viewport.Height;
+                    PositionY = Texture.Height + ScreenManager.GraphicsDevice.Viewport.Height;
                 } else{
-                    positionY = -Texture.Height;
+                    PositionY = -Texture.Height;
                 }
             }
         }

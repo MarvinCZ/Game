@@ -1,9 +1,8 @@
 ﻿using GameEngine.GameObjects;
+using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace GameEngine.Objects
 {
@@ -16,8 +15,8 @@ namespace GameEngine.Objects
         {
             this.point1 = point1;
             this.point2 = point2;
-            solid = true;
-            colisionBox = new HelpObjects.ColisionBox(this, HelpObjects.ColisionBox.BoxType.Rectangle);
+            Solid = true;
+            ColisionBox = new ColisionBox(this, ColisionBox.BoxType.Rectangle);
             //spriteColorAlfa = 0.7f;
             SpriteColor = Color.Yellow;
         }

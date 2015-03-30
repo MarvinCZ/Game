@@ -10,35 +10,29 @@ namespace GameEngine.GameObjects
     public abstract class SpriteObject : GameObject, IFollowable
     {
 
-        protected float positionX;
-        protected float positionY;
-        protected float originX;
-        protected float originY;
+        protected float PositionX;
+        protected float PositionY;
+        protected float OriginX;
+        protected float OriginY;
 
-        protected int spriteColorR;
-        protected int spriteColorG;
-        protected int spriteColorB;
-        protected float spriteColorAlfa = 1f;
-        private bool? _camDep = null;
+        protected int SpriteColorR;
+        protected int SpriteColorG;
+        protected int SpriteColorB;
+        protected float SpriteColorAlfa = 1f;
+        private bool? _camDep;
         private Texture2D _texture;
-        protected bool solid = false;
+        protected bool Solid;
         private Rectangle _boundingBox;
 
-        protected ColisionBox colisionBox;
+        public ColisionBox ColisionBox { protected set; get; }
 
-        protected List<Sound> sounds;
+        protected List<Sound> Sounds;
 
         public bool IsSolid
         {
             get
             {
-                return solid;
-            }
-        }
-        public ColisionBox ColisionBox{
-            get
-            {
-                return colisionBox;
+                return Solid;
             }
         }
 
@@ -62,12 +56,12 @@ namespace GameEngine.GameObjects
         /// </summary>
         public Vector2 Origin{
             get{
-                return new Vector2(originX, originY);
+                return new Vector2(OriginX, OriginY);
             }
             set
             {
-                originX = value.X;
-                originY = value.Y;
+                OriginX = value.X;
+                OriginY = value.Y;
                 UpdateBoundingBox();
             }
         }
@@ -76,12 +70,12 @@ namespace GameEngine.GameObjects
         /// </summary>
         public Vector2 Position{
             get{
-                return new Vector2(positionX,positionY);
+                return new Vector2(PositionX,PositionY);
             }
             set
             {
-                positionX = value.X;
-                positionY = value.Y;
+                PositionX = value.X;
+                PositionY = value.Y;
                 UpdateBoundingBox();
             }
         }
@@ -94,7 +88,7 @@ namespace GameEngine.GameObjects
                 if (_camDep != null)
                     return (bool)_camDep;
                 _camDep = true;
-                if (gameScreen.Layers.Values.Any(layer => !layer.CameraDependent && layer.Objekty.Contains(this)) || (gameScreen.messageBox != null && gameScreen.messageBox.Buttons.Contains(this)))
+                if (GameScreen.Layers.Values.Any(layer => !layer.CameraDependent && layer.Objekty.Contains(this)) || (GameScreen.MessageBox != null && GameScreen.MessageBox.Buttons.Contains(this)))
                 {
                     _camDep = false;
                 }
@@ -109,24 +103,24 @@ namespace GameEngine.GameObjects
         /// barva pouzita k vykreslovani (bez alfy)
         /// </summary>
         public Color SpriteColor{
-            get { return new Color(spriteColorR,spriteColorG,spriteColorB);}
+            get { return new Color(SpriteColorR,SpriteColorG,SpriteColorB);}
             set{
-                spriteColorR = value.R;
-                spriteColorG = value.G;
-                spriteColorB = value.B;
+                SpriteColorR = value.R;
+                SpriteColorG = value.G;
+                SpriteColorB = value.B;
             }
         }
         /// <summary>
         /// barva pouzita k vykreslovani (s alfou)
         /// </summary>
         public Color SpriteColorA{
-            get { return new Color(spriteColorR, spriteColorG, spriteColorB) * spriteColorAlfa; }
+            get { return new Color(SpriteColorR, SpriteColorG, SpriteColorB) * SpriteColorAlfa; }
             set
             {
-                spriteColorR = value.R;
-                spriteColorG = value.G;
-                spriteColorB = value.B;
-                spriteColorAlfa = value.A;
+                SpriteColorR = value.R;
+                SpriteColorG = value.G;
+                SpriteColorB = value.B;
+                SpriteColorAlfa = value.A;
             }
 
         }
@@ -160,7 +154,7 @@ namespace GameEngine.GameObjects
         protected SpriteObject(GameScreen game) : base(game){
             Scale = Vector2.One;
             SpriteColor = Color.White;
-            sounds = new List<Sound>();
+            Sounds = new List<Sound>();
         }
 
         protected SpriteObject(GameScreen game,Vector2 position)
@@ -187,15 +181,15 @@ namespace GameEngine.GameObjects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            foreach (Sound snd in sounds)
+            foreach (Sound snd in Sounds)
                 snd.Update();
         }
 
         public override void UnloadContent(){
             _texture = null;
-            foreach (Sound snd in sounds)
+            foreach (Sound snd in Sounds)
                 snd.Stop();
-            sounds = new List<Sound>();
+            Sounds = new List<Sound>();
         }
         protected void UpdateBoundingBox()
         {
@@ -205,8 +199,8 @@ namespace GameEngine.GameObjects
                 return;
             }
             Vector2 spriteSize = SourceRectangle.IsEmpty ? new Vector2(Texture.Width, Texture.Height) : new Vector2(SourceRectangle.Width, SourceRectangle.Height);
-            Rectangle r = new Rectangle((int)positionX, (int)positionY, (int)(spriteSize.X * Scale.X), (int)(spriteSize.Y * Scale.Y));
-            r.Offset((int)(-originX * Scale.X), (int)(-originY * Scale.Y));
+            Rectangle r = new Rectangle((int)PositionX, (int)PositionY, (int)(spriteSize.X * Scale.X), (int)(spriteSize.Y * Scale.Y));
+            r.Offset((int)(-OriginX * Scale.X), (int)(-OriginY * Scale.Y));
             _boundingBox = r;
         }
     }

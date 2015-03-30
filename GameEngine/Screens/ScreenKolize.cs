@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GameEngine.Cameras;
+﻿using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.Objects;
-using GameEngine.Screens;
-using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Screens
@@ -31,7 +25,7 @@ namespace GameEngine.Screens
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.Clear(Color.Black);
+            ScreenManager.GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
     }

@@ -90,8 +90,8 @@ namespace GameEngine.GameObjects
         protected override void Reposition(){
             base.Reposition();
             Position = new Vector2(
-                game.GraphicsDevice.Viewport.Bounds.Width / 2f,
-                game.GraphicsDevice.Viewport.Bounds.Height / 2f);
+                ScreenManager.GraphicsDevice.Viewport.Bounds.Width / 2f,
+                ScreenManager.GraphicsDevice.Viewport.Bounds.Height / 2f);
             float width = (Texture.Width*Scale.X)/2f;
             Vector2 position = new Vector2(width - 10f, Texture.Height/4f);
             ((ClickableText)Buttons[0]).Position = Position + position;

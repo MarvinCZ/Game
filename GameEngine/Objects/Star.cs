@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -39,7 +36,7 @@ namespace GameEngine.Objects
         public override void Update(GameTime gameTime){
             _zivot--;
             if (_zivot < 0){
-                gameScreen.Layers.Values.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
+                GameScreen.Layers.Values.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
             }
             Position += _smer*_rychlost;
             Scale *= scaling;

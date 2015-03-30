@@ -1,5 +1,4 @@
-﻿using System;
-using GameEngine.GameObjects;
+﻿using GameEngine.GameObjects;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,10 +12,10 @@ namespace GameEngine.Objects
         public ColidebleMovable(GameScreen game)
             : base(game)
         {
-            colisionBox = new ColisionBox(this,ColisionBox.BoxType.Circle);
+            ColisionBox = new ColisionBox(this,ColisionBox.BoxType.Circle);
             float scale = 0.6f;
             Scale = new Vector2(scale, scale);
-            solid = true;
+            Solid = true;
             SpriteColor = new Color(255, 0, 255);
         }
 

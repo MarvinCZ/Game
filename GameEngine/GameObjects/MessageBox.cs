@@ -82,8 +82,8 @@ namespace GameEngine.GameObjects
                 Scale = new Vector2((x / Texture.Width) + 0.2f, 1);
             }
             Position = new Vector2(
-                game.GraphicsDevice.Viewport.Bounds.Width / 2f,
-                game.GraphicsDevice.Viewport.Bounds.Height / 2f);
+                ScreenManager.GraphicsDevice.Viewport.Bounds.Width / 2f,
+                ScreenManager.GraphicsDevice.Viewport.Bounds.Height / 2f);
             Vector2 position = new Vector2(0f,Texture.Height/4f);
             message.Position = Position - position;
             float celek = Buttons[0].BoundingBox.Width;
@@ -101,7 +101,7 @@ namespace GameEngine.GameObjects
 
         public enum Result{
             Storno,
-            Ok,
+            Ok
         }
     }
 }

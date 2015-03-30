@@ -1,10 +1,6 @@
-﻿using GameEngine.GameObjects;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GameEngine.GameObjects
 {
@@ -18,7 +14,7 @@ namespace GameEngine.GameObjects
             SpriteColor = Color.Red;
             smer = new Vector2(0, 0);
             rychlost = 5f;
-            solid = true;
+            Solid = true;
         }
 
         public override void Update(GameTime gameTime)
@@ -26,7 +22,7 @@ namespace GameEngine.GameObjects
             colideX = false;
             colideY = false;
             //TODO: melo by zmizet
-            if (kolize(gameScreen.Layers["SolidObjects"].Objekty))
+            if (kolize(GameScreen.Layers["SolidObjects"].Objekty))
             {
                 Position += smer * rychlost;
             }
@@ -34,13 +30,13 @@ namespace GameEngine.GameObjects
             {
                 smer.Normalize();
                 Position += new Vector2(smer.X, 0) * rychlost;
-                while (kolize(gameScreen.Layers["SolidObjects"].Objekty) || kolize(gameScreen.Layers["MovebleObjects"].Objekty))
+                while (kolize(GameScreen.Layers["SolidObjects"].Objekty) || kolize(GameScreen.Layers["MovebleObjects"].Objekty))
                 {
                     colideX = true;
                     Position -= new Vector2(smer.X, 0)*0.5f;
                 }
                 Position += new Vector2(0, smer.Y) * rychlost;
-                while (kolize(gameScreen.Layers["SolidObjects"].Objekty) || kolize(gameScreen.Layers["MovebleObjects"].Objekty))
+                while (kolize(GameScreen.Layers["SolidObjects"].Objekty) || kolize(GameScreen.Layers["MovebleObjects"].Objekty))
                 {
                     colideY = true;
                     Position -= new Vector2(0, smer.Y) * 0.5f;
@@ -55,7 +51,7 @@ namespace GameEngine.GameObjects
             {
                 if (obj[i] is SpriteObject && ((SpriteObject)obj[i]).IsSolid && obj[i] != this)
                 {
-                    if (((SpriteObject)obj[i]).ColisionBox.ColideWhith(this.ColisionBox))
+                    if (((SpriteObject)obj[i]).ColisionBox.ColideWhith(ColisionBox))
                         return true;
                 }
             }

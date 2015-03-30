@@ -25,7 +25,7 @@ namespace GameEngine.GameObjects
             /// <summary>
             /// Zarovnano do prava/dolu
             /// </summary>
-            Far,
+            Far
         }
 
         private TextAlignment _verticalAlignment = TextAlignment.Center;
@@ -74,8 +74,8 @@ namespace GameEngine.GameObjects
             get
             {
                 Vector2 textSize = SourceRectangle.IsEmpty ? Font.MeasureString(Text) : new Vector2(SourceRectangle.Width, SourceRectangle.Height);
-                Rectangle r = new Rectangle((int)positionX, (int)positionY, (int)(textSize.X * Scale.X), (int)(textSize.Y * Scale.Y));
-                r.Offset((int)(-originX * Scale.X), (int)(-originY * Scale.Y));
+                Rectangle r = new Rectangle((int)PositionX, (int)PositionY, (int)(textSize.X * Scale.X), (int)(textSize.Y * Scale.Y));
+                r.Offset((int)(-OriginX * Scale.X), (int)(-OriginY * Scale.Y));
                 return r;
             }
         }
@@ -105,25 +105,25 @@ namespace GameEngine.GameObjects
             switch (HorizontAlignment)
             {
                 case TextAlignment.Near:
-                    originX = 0;
+                    OriginX = 0;
                     break;
                 case TextAlignment.Center:
-                    originX = size.X / 2;
+                    OriginX = size.X / 2;
                     break;
                 case TextAlignment.Far:
-                    originX = size.X;
+                    OriginX = size.X;
                     break;
             }
             switch (VerticalAlignment)
             {
                 case TextAlignment.Near:
-                    originY = 0;
+                    OriginY = 0;
                     break;
                 case TextAlignment.Center:
-                    originY = size.Y / 2;
+                    OriginY = size.Y / 2;
                     break;
                 case TextAlignment.Far:
-                    originY = size.Y;
+                    OriginY = size.Y;
                     break;
             }
 

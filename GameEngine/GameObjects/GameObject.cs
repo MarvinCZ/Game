@@ -4,20 +4,20 @@ using Microsoft.Xna.Framework.Content;
 namespace GameEngine.GameObjects
 {
     public abstract class GameObject{
-        protected Game game;
-        protected GameScreen gameScreen;
+        protected readonly Game ScreenManager;
+        protected readonly GameScreen GameScreen;
         /// <summary>
         /// Vrati pocet volani metody update
         /// </summary>
-        protected int updateCount;
+        protected int UpdateCount;
 
         protected GameObject(GameScreen game){
-            this.game = game.Game;
-            gameScreen = game;
+            ScreenManager = game.ScreenManager;
+            GameScreen = game;
         }
 
         public virtual void Update(GameTime gameTime){
-            updateCount++;
+            UpdateCount++;
         }
 
         public abstract void LoadContent(ContentManager content);

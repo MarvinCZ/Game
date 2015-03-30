@@ -18,9 +18,9 @@ namespace GameEngine.Objects
             float rychlost = GameHelper.Instance.RandomNext(2f, 4f);
             float angel = GameHelper.Instance.RandomNext(0f, MathHelper.TwoPi);
             _smer = new Vector2(rychlost*(float)Math.Cos(angel),rychlost*(float)Math.Sin(angel));
-            spriteColorG = 100;
-            spriteColorR = 100;
-            spriteColorB = 100;
+            SpriteColorG = 100;
+            SpriteColorR = 100;
+            SpriteColorB = 100;
         }
 
         public override void LoadContent(ContentManager content){
@@ -31,19 +31,19 @@ namespace GameEngine.Objects
             base.Update(gameTime);
             _zivot--;
             if (_zivot < 0){
-                gameScreen.Layers.Values.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
+                GameScreen.Layers.Values.Single(s => s.Objekty.Contains(this)).Objekty.Remove(this);
             }
             if (_zivot%50 == 0)
                 _smer *= -1;
             Position += _smer;
-            spriteColorG += _plusG;
-            spriteColorR += _plusR;
-            spriteColorB += _plusB;
-            if (spriteColorG < 50 || spriteColorG > 220)
+            SpriteColorG += _plusG;
+            SpriteColorR += _plusR;
+            SpriteColorB += _plusB;
+            if (SpriteColorG < 50 || SpriteColorG > 220)
                 _plusG *= -1;
-            if (spriteColorR < 50 || spriteColorR > 220)
+            if (SpriteColorR < 50 || SpriteColorR > 220)
                 _plusR *= -1;
-            if (spriteColorB < 50 || spriteColorB > 220)
+            if (SpriteColorB < 50 || SpriteColorB > 220)
                 _plusB *= -1;
         }
     }

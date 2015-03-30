@@ -1,13 +1,9 @@
 ﻿using System.Collections.Generic;
-using GameEngine.GameObjects;
 using GameEngine.Cameras;
-using GameEngine.Screens;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Linq;
-using System.Windows.Forms.VisualStyles;
-
 
 namespace GameEngine
 {
@@ -17,18 +13,18 @@ namespace GameEngine
     public abstract class GameScreen{
         private SpriteBatch _spriteBatch;
 
-        public MessageBox messageBox;
-        protected readonly ContentManager contentManager;
-        public readonly Game Game;
+        public MessageBox MessageBox;
+        protected readonly ContentManager ContentManager;
+        public readonly Game ScreenManager;
         public abstract string Name { get; }
 
         public readonly Dictionary<string,Layer> Layers = new Dictionary<string, Layer>();
         public Camera MainCam { get; protected set; }
 
         protected GameScreen(ScreenManager screenManager){
-            Game = screenManager;
-            contentManager = new ContentManager(screenManager.Services);
-            contentManager.RootDirectory = screenManager.Content.RootDirectory;
+            ScreenManager = screenManager;
+            ContentManager = new ContentManager(screenManager.Services);
+            ContentManager.RootDirectory = screenManager.Content.RootDirectory;
             Layers["Background"] = new Layer();
             Layers["SolidObjects"] = new Layer();
             Layers["MovebleObjects"] = new Layer();
@@ -42,15 +38,15 @@ namespace GameEngine
         public virtual void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(ScreenManager.GraphicsDevice);
             foreach (KeyValuePair<string, Layer> layer in Layers)
             {
-                layer.Value.LoadContent(contentManager,layer.Key);
+                layer.Value.LoadContent(ContentManager,layer.Key);
             }
         }
 
         public void UnloadContent(){
-            contentManager.Unload();
+            ContentManager.Unload();
             foreach (Layer layer in Layers.Values)
             {
                 layer.UnloadContent();
@@ -64,8 +60,8 @@ namespace GameEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public virtual void Update(GameTime gameTime)
         {
-            if (messageBox != null && messageBox.Active)
-                messageBox.Update(gameTime);
+            if (MessageBox != null && MessageBox.Active)
+                MessageBox.Update(gameTime);
             else
             {
 
@@ -81,7 +77,7 @@ namespace GameEngine
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public virtual void Draw(GameTime gameTime){
-            Rectangle view = Game.GraphicsDevice.Viewport.Bounds;
+            Rectangle view = ScreenManager.GraphicsDevice.Viewport.Bounds;
             if (MainCam != null)
             {
                 view = MainCam.ViewRectangle;
@@ -95,15 +91,15 @@ namespace GameEngine
                     layer.Draw(gameTime,_spriteBatch,view);
             if (MainCam != null)
             {
-                view = Game.GraphicsDevice.Viewport.Bounds;
+                view = ScreenManager.GraphicsDevice.Viewport.Bounds;
                 _spriteBatch.End();
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             }
             foreach (Layer layer in Layers.Values)
                 if (!layer.CameraDependent)
                     layer.Draw(gameTime, _spriteBatch, view);
-            if (messageBox != null && messageBox.Active)
-                messageBox.Draw(gameTime, _spriteBatch);
+            if (MessageBox != null && MessageBox.Active)
+                MessageBox.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
         }

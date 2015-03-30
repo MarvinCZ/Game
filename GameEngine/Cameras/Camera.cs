@@ -86,7 +86,7 @@ namespace GameEngine.Cameras
         protected Camera(GameScreen game){
             Rotation = 0f;
             Zoom = 1f;
-            this.game = game.Game;
+            this.game = game.ScreenManager;
             reCalc = true;
         }
         /// <summary>

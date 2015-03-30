@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Audio;
+﻿using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using GameEngine.GameObjects;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GameEngine.HelpObjects
 {

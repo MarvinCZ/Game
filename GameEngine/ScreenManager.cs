@@ -5,16 +5,17 @@ using System.Windows.Forms;
 using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace GameEngine
 {
     public class ScreenManager : Game{
         public readonly List<GameScreen> Screens = new List<GameScreen>();
         private GameScreen _activeScreen;
-        private bool _fullscreen = false;
+        private bool _fullscreen;
         public MouseState LastMouseState;
         public KeyboardState LastKeyboardState;
-        private GraphicsDeviceManager _graphicDeviceManager;
+        private readonly GraphicsDeviceManager _graphicDeviceManager;
 
         public ScreenManager()
         {
@@ -72,9 +73,9 @@ namespace GameEngine
 
         protected override void Update(GameTime gameTime){
             base.Update(gameTime);
-            if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && LastKeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && LastKeyboardState.IsKeyUp(Keys.Escape))
             {
-                if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift))
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
                     Fullscreen(null, _graphicDeviceManager);
                 else
                     ActiveScreen<MenuScreen>();

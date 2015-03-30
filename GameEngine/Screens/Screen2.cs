@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
@@ -28,24 +27,24 @@ namespace GameEngine
             {
                 Layers["MovebleObjects"].Objekty.Add(new Hvezda(this));
             }
-            _ukazatel = new TextObject(this,"5",new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
+            _ukazatel = new TextObject(this,"5",new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f,0.3f)
             };
             Layers["Gui"].Objekty.Add(_ukazatel);
-            _ukaztelCount = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
+            _ukaztelCount = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 30)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            _ukazatelFPS = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 50))
+            _ukazatelFPS = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 50))
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
                 Scale = new Vector2(0.3f, 0.3f)
             };
-            _ukazatelPozice = new TextObject(this, "", new Vector2(Game.GraphicsDevice.Viewport.Bounds.Width - 20, 70))
+            _ukazatelPozice = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 70))
             {
                 HorizontAlignment = TextObject.TextAlignment.Far,
                 VerticalAlignment = TextObject.TextAlignment.Near,
@@ -67,16 +66,16 @@ namespace GameEngine
                     return;
             }
             MessageBox mb = (MessageBox) sender;
-            messageBox = null;
+            MessageBox = null;
             if(mb.MessageResult == MessageBox.Result.Ok)
-                ((ScreenManager)Game).ActiveScreen<MenuScreen>();
+                ((ScreenManager)ScreenManager).ActiveScreen<MenuScreen>();
         }
 
         void OpenMessageBox(object sender, EventArgs e){
             //messageBox = new InputMessageBox(this,"Write IP");
-            messageBox = new MessageBox(this, "Vratit do Menu?",true);
-            messageBox.LoadContent(contentManager);
-            messageBox.Show(SwitchScreen);
+            MessageBox = new MessageBox(this, "Vratit do Menu?",true);
+            MessageBox.LoadContent(ContentManager);
+            MessageBox.Show(SwitchScreen);
         }
 
         public override void Draw(GameTime gameTime){
@@ -86,13 +85,13 @@ namespace GameEngine
                 _ukazatelFPS.Text = _updates + " FPS";
                 _updates = 0;
             }
-            Game.GraphicsDevice.Clear(Color.Black);
+            ScreenManager.GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime){
             base.Update(gameTime);
-            if (messageBox != null && messageBox.Active) { }
+            if (MessageBox != null && MessageBox.Active) { }
             else
             {
                 Vector2 mousePos = GameHelper.Instance.RealVector2(Mouse.GetState().Position.ToVector2(), MainCam.TransformMatrix);
@@ -108,11 +107,11 @@ namespace GameEngine
                 for (int j = 0; j < 20; j++)
                 {
                     Star star = new Star(this);
-                    star.LoadContent(contentManager);
+                    star.LoadContent(ContentManager);
                     Layers["MovebleObjects"].Objekty.Add(star);
                 }
 
-                int i = (int)((Camera)MainCam).MoveSpeed;
+                int i = (int)MainCam.MoveSpeed;
                 _ukazatel.Text = i + " Camera Speed";
                 int count = 0;
                 foreach (Layer layer in Layers.Values)

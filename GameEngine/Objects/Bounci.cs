@@ -1,10 +1,8 @@
-﻿using System;
-using GameEngine.GameObjects;
+﻿using GameEngine.GameObjects;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace GameEngine.Objects
 {
@@ -13,7 +11,7 @@ namespace GameEngine.Objects
         public Bounci(GameScreen game)
             : base(game)
         {
-            colisionBox = new ColisionBox(this,ColisionBox.BoxType.Circle);
+            ColisionBox = new ColisionBox(this,ColisionBox.BoxType.Circle);
             float scale = 0.5f;
             Scale = new Vector2(scale, scale);
             Position = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));

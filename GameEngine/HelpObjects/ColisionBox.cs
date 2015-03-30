@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Collections.Generic;
 using GameEngine.GameObjects;
+using Microsoft.Xna.Framework;
 
 namespace GameEngine.HelpObjects
 {
@@ -125,7 +121,7 @@ namespace GameEngine.HelpObjects
         public enum BoxType
         {
             Rectangle,
-            Circle,
+            Circle
         }
         bool pointInCirkle(Point pnt, Point center, int radius)
         {

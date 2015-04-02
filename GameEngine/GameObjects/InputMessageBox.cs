@@ -17,6 +17,7 @@ namespace GameEngine.GameObjects
         public InputMessageBox(GameScreen game, string message, bool storno = true) : base(game, message, storno){
             input = new TextObject(game,"",Color.Green);
             Input = "";
+            this.Objects.Add(input);
         }
 
         public InputMessageBox(GameScreen game, string message, Regex rex, bool storno = true) : this(game, message, storno){
@@ -57,7 +58,7 @@ namespace GameEngine.GameObjects
                         Input += inpt;
                 }
             }
-            input.Update(gameTime);
+            //input.Update(gameTime);
             input.Text = Input;
             float lengh = input.BoundingBox.Width;
             if (lengh < 100f)

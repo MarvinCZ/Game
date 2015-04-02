@@ -12,8 +12,9 @@ namespace GameEngine
     /// </summary>
     public abstract class GameScreen{
         private SpriteBatch _spriteBatch;
+        protected bool Paused;
+        private List<GameObject> _pauseObjects;
 
-        public MessageBox MessageBox;
         protected readonly ContentManager ContentManager;
         public readonly ScreenManager ScreenManager;
         public abstract string Name { get; }
@@ -60,16 +61,17 @@ namespace GameEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public virtual void Update(GameTime gameTime)
         {
-            if (MessageBox != null && MessageBox.Active)
-                MessageBox.Update(gameTime);
-            else
-            {
-
+            if (Paused){
+                foreach (GameObject pauseObject in _pauseObjects){
+                    pauseObject.Update(gameTime);
+                }
+            }
+            else{
                 foreach (Layer layer in Layers.Values)
                     layer.Update(gameTime);
-                if (MainCam != null)
-                    MainCam.Update();
             }
+            if (MainCam != null)
+                MainCam.Update();
         }
 
         /// <summary>
@@ -98,10 +100,20 @@ namespace GameEngine
             foreach (Layer layer in Layers.Values)
                 if (!layer.CameraDependent)
                     layer.Draw(gameTime, _spriteBatch, view);
-            if (MessageBox != null && MessageBox.Active)
-                MessageBox.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
+        }
+
+        public void Pause(List<GameObject> pauseObjects)
+        {
+            Paused = true;
+            _pauseObjects = pauseObjects;
+        }
+
+        public void UnPause()
+        {
+            Paused = false;
+            _pauseObjects = null;
         }
     }
 }

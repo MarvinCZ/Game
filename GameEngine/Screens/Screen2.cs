@@ -66,16 +66,16 @@ namespace GameEngine
                     return;
             }
             MessageBox mb = (MessageBox) sender;
-            MessageBox = null;
+            mb.Destroy();
             if(mb.MessageResult == MessageBox.Result.Ok)
                 ScreenManager.ActiveScreen<MenuScreen>();
         }
 
         void OpenMessageBox(object sender, EventArgs e){
-            //messageBox = new InputMessageBox(this,"Write IP");
-            MessageBox = new MessageBox(this, "Vratit do Menu?",true);
-            MessageBox.LoadContent(ContentManager);
-            MessageBox.Show(SwitchScreen);
+            MessageBox mb = new InputMessageBox(this,"Write IP",false);
+            //MessageBox mb = new MessageBox(this, "Vratit do Menu?",true);
+            mb.LoadContent(ContentManager);
+            mb.Show(SwitchScreen);
         }
 
         public override void Draw(GameTime gameTime){
@@ -91,7 +91,7 @@ namespace GameEngine
 
         public override void Update(GameTime gameTime){
             base.Update(gameTime);
-            if (MessageBox != null && MessageBox.Active) { }
+            if (Paused) { }
             else
             {
                 Vector2 mousePos = GameHelper.Instance.RealVector2(Mouse.GetState().Position.ToVector2(), MainCam.TransformMatrix);

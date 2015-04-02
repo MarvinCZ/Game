@@ -55,25 +55,29 @@ namespace GameEngine.GameObjects
         {
             if (_objekty != null)
             {
-                if (_objekty.Length < Objekty.Count)
-                {
-                    _objekty = new GameObject[(int)(Objekty.Count * 1.2f)];
-                }
+                MoveObjects();
                 int objectCount = Objekty.Count;
-                for (int i = 0; i < _objekty.Length; i++)
-                {
-                    if (i < objectCount)
-                    {
-                        _objekty[i] = Objekty[i];
-                    }
-                    else
-                    {
-                        _objekty[i] = null;
-                    }
-                }
                 for (int i = 0; i < objectCount; i++)
                 {
                     _objekty[i].Update(gameTime);
+                }
+            }
+        }
+
+        public void MoveObjects()
+        {
+            if (_objekty != null){
+                if (_objekty.Length < Objekty.Count){
+                    _objekty = new GameObject[(int) (Objekty.Count*1.2f)];
+                }
+                int objectCount = Objekty.Count;
+                for (int i = 0; i < _objekty.Length; i++){
+                    if (i < objectCount){
+                        _objekty[i] = Objekty[i];
+                    }
+                    else{
+                        _objekty[i] = null;
+                    }
                 }
             }
         }

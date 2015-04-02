@@ -9,18 +9,22 @@ namespace GameEngine.GameObjects
 {
     public class MessageBox : SpriteObject{
         protected readonly TextObject message;
-        public List<SpriteObject> Buttons = new List<SpriteObject>();
-        protected bool storno;
+        public readonly List<SpriteObject> Buttons = new List<SpriteObject>();
+        protected readonly List<GameObject> Objects = new List<GameObject>(); 
+        protected readonly bool storno;
         public Result MessageResult;
 
         protected event EventHandler OnExit;
-        public bool Active { get; private set; }
         public MessageBox(GameScreen game, String message, bool storno = true) : base(game){
             this.message = new TextObject(game,message,Color.Red);
             Buttons.Add(new ClickableText(game, "OK", new Vector2(), Color.Red, MouseOkClick));
             Buttons.Add(new ClickableText(game, "STORNO", new Vector2(), Color.Red, MouseStornoClick));
             this.storno = storno;
-            Active = true;
+            Objects.Add(this);
+            Objects.Add(this.message);
+            Objects.Add(Buttons[0]);
+            if(storno)
+                Objects.Add(Buttons[1]);
         }
 
         protected virtual void MouseOkClick(object sender, EventArgs e)
@@ -28,7 +32,6 @@ namespace GameEngine.GameObjects
             MessageResult = Result.Ok;
             if(OnExit != null)
                 OnExit(this,new EventArgs());
-            Active = false;
         }
 
         protected virtual void MouseStornoClick(object sender, EventArgs e)
@@ -36,35 +39,37 @@ namespace GameEngine.GameObjects
             MessageResult = Result.Storno;
             if (OnExit != null)
                 OnExit(this, new EventArgs());
-            Active = false;
         }
 
         public void Show(EventHandler ev)
         {
+            foreach (GameObject gameObject in Objects){
+                GameScreen.Layers["Gui"].Objekty.Add(gameObject);
+            }
+            GameScreen.Pause(Objects);
+            GameScreen.Layers["Gui"].MoveObjects();
             OnExit = null;
             OnExit += ev;
         }
 
+        public void Destroy()
+        {
+            foreach (GameObject gameObject in Objects)
+            {
+                GameScreen.Layers["Gui"].Objekty.Remove(gameObject);
+            }
+            GameScreen.UnPause();
+        }
+
         public override void Update(GameTime gameTime){
             base.Update(gameTime);
-            message.Update(gameTime);
-            Buttons[0].Update(gameTime);
             if (storno){
-                Buttons[1].Update(gameTime);
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape)){
                     MouseStornoClick(null,new EventArgs());
                 }
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Enter))
                 MouseOkClick(null,new EventArgs());
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch){
-            base.Draw(gameTime, spriteBatch);
-            message.Draw(gameTime,spriteBatch);
-            Buttons[0].Draw(gameTime, spriteBatch);
-            if(storno)
-                Buttons[1].Draw(gameTime, spriteBatch);
         }
 
         public override void LoadContent(ContentManager content){

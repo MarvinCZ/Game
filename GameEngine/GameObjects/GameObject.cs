@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.GameObjects
 {
@@ -19,6 +20,11 @@ namespace GameEngine.GameObjects
 
         public virtual void Update(GameTime gameTime){
             UpdateCount++;
+        }
+
+        protected virtual void Destroy()
+        {
+            Layer.Objekty.Remove(this);
         }
 
         public abstract void LoadContent(ContentManager content);

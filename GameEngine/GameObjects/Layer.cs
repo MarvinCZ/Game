@@ -40,6 +40,7 @@ namespace GameEngine.GameObjects
         {
             Objekty.Add(obj);
             obj.LoadContent(ScreenManager.Content);
+            obj.Layer = this;
         }
         public void UnloadContent()
         {

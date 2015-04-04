@@ -72,6 +72,25 @@ namespace GameEngine.GameObjects
             {
                 MoveObjects();
                 int objectCount = Objekty.Count;
+                if (Name == "Foreground" && GameScreen.ShowUnder != null){
+                    Vector2 center = GameScreen.ShowUnder.Position;
+                    Rectangle centerRect = new Rectangle((int)center.X - 40, (int)center.Y - 40, 80, 80);
+                    for (int i = 0; i < objectCount; i++)
+                    {
+                        if (_objekty[i] is SpriteObject){
+                            if (((SpriteObject)_objekty[i]).BoundingBox.Intersects(centerRect) && ((SpriteObject)_objekty[i]).SpriteColorAlfa > 0.1f)
+                            {
+                                ((SpriteObject) _objekty[i]).SpriteColorAlfa -= 0.05f;
+                            }
+                            else if (((SpriteObject)_objekty[i]).SpriteColorAlfa < 1f)
+                            {
+                                ((SpriteObject)_objekty[i]).SpriteColorAlfa += 0.05f;
+                            }
+                        }
+                        _objekty[i].Update(gameTime);
+                    }
+
+                }
                 for (int i = 0; i < objectCount; i++)
                 {
                     _objekty[i].Update(gameTime);

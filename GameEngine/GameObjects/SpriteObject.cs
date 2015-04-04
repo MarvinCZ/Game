@@ -18,7 +18,7 @@ namespace GameEngine.GameObjects
         protected int SpriteColorR;
         protected int SpriteColorG;
         protected int SpriteColorB;
-        protected float SpriteColorAlfa = 1f;
+        public float SpriteColorAlfa = 1f;
         private Texture2D _texture;
         protected bool Solid;
         private Rectangle _boundingBox;

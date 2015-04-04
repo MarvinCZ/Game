@@ -15,11 +15,16 @@ namespace GameEngine.Screens
         {
             for (int i = 0; i < 1000; i++)
             {
-                Layers["SolidObjects"].Objekty.Add(new ColidableRectangle(this));
+                Layers["SolidObjects"].Objekty.Add(new ColidableRectangle(this,Color.Red));
+            }
+            for (int i = 0; i < 1000; i++)
+            {
+                Layers["Foreground"].Objekty.Add(new ColidableRectangle(this,Color.Blue));
             }
             IFollowable foll = new ColidebleMovable(this);
             Layers["MovebleObjects"].Objekty.Add((SpriteObject)foll);
             MainCam = new FollowingCamera(this, foll);
+            ShowUnder = foll;
             base.LoadContent();
         }
 

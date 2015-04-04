@@ -12,12 +12,10 @@ namespace GameEngine.Objects
         bool Rup;
         bool Gup;
         bool Bup;
-        public ColidableRectangle(GameScreen screen) : base(screen) {
+        public ColidableRectangle(GameScreen screen,Color color) : base(screen) {
             PositionX = GameHelper.Instance.RandomNext(-2000f, 2000f);
             PositionY = GameHelper.Instance.RandomNext(-2000f, 2000f);
-            SpriteColorR = GameHelper.Instance.RandomNext(60, 240);
-            SpriteColorG = GameHelper.Instance.RandomNext(60, 240);
-            SpriteColorB = GameHelper.Instance.RandomNext(60, 240);
+            SpriteColor = color;
             if (GameHelper.Instance.RandomBool(0.8f))
             {
                 float scale = GameHelper.Instance.RandomNext(0.5f, 2f);
@@ -52,9 +50,9 @@ namespace GameEngine.Objects
 
         public override void Update(GameTime gameTime)
         {
-            SpriteColorR += Rup ? 1 : -1;
-            SpriteColorG += Gup ? 1 : -1;
-            SpriteColorB += Bup ? 1 : -1;
+            //SpriteColorR += Rup ? 1 : -1;
+            //SpriteColorG += Gup ? 1 : -1;
+            //SpriteColorB += Bup ? 1 : -1;
             if (SpriteColorR > 240)
                 Rup = false;
             if (SpriteColorG > 240)

@@ -17,6 +17,7 @@ namespace GameEngine
 
         protected readonly ContentManager ContentManager;
         public readonly ScreenManager ScreenManager;
+        public IFollowable ShowUnder;
         public abstract string Name { get; }
 
         public readonly Dictionary<string,Layer> Layers = new Dictionary<string, Layer>();

@@ -2,7 +2,7 @@
 
 namespace GameEngine.Cameras
 {
-    interface IFollowable
+    public interface IFollowable
     {
         /// <summary>
         /// Vrati pozici, kterou kamera sleduje

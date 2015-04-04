@@ -45,6 +45,7 @@ namespace GameEngine.GameObjects
         {
             foreach (GameObject gameObject in Objects){
                 GameScreen.Layers["Gui"].Objekty.Add(gameObject);
+                gameObject.Layer = GameScreen.Layers["Gui"];
             }
             GameScreen.Pause(Objects);
             GameScreen.Layers["Gui"].MoveObjects();

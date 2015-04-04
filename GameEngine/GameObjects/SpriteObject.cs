@@ -19,7 +19,6 @@ namespace GameEngine.GameObjects
         protected int SpriteColorG;
         protected int SpriteColorB;
         protected float SpriteColorAlfa = 1f;
-        private bool? _camDep;
         private Texture2D _texture;
         protected bool Solid;
         private Rectangle _boundingBox;
@@ -85,14 +84,7 @@ namespace GameEngine.GameObjects
         public bool CameraDependent {
             get
             {
-                if (_camDep != null)
-                    return (bool)_camDep;
-                _camDep = true;
-                if (GameScreen.Layers.Values.Any(layer => !layer.CameraDependent && layer.Objekty.Contains(this)))
-                {
-                    _camDep = false;
-                }
-                return (bool)_camDep;
+                return Layer.CameraDependent;
             }
         }
         /// <summary>

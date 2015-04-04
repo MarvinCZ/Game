@@ -9,10 +9,14 @@ namespace GameEngine.GameObjects
     {
         private GameObject[] _objekty;
         public List<GameObject> Objekty = new List<GameObject>();
+        protected readonly GameScreen GameScreen;
+        protected readonly ScreenManager ScreenManager;
         public bool CameraDependent { get; protected set; }
         public string Name { get; set; }
-        public Layer(bool cameraDependent = true)
+        public Layer(GameScreen gameScreen,bool cameraDependent = true)
         {
+            GameScreen = gameScreen;
+            ScreenManager = GameScreen.ScreenManager;
             CameraDependent = cameraDependent;
         }
         public void LoadContent(ContentManager contentManager,string name)
@@ -27,6 +31,15 @@ namespace GameEngine.GameObjects
                 objekt.LoadContent(contentManager);
                 objekt.Layer = this;
             }
+        }
+        /// <summary>
+        /// Pouzit kdyz se objekt nepridava v metode LoadContent
+        /// </summary>
+        /// <param name="obj">Objekt k pridani</param>
+        public void AddObject(GameObject obj)
+        {
+            Objekty.Add(obj);
+            obj.LoadContent(ScreenManager.Content);
         }
         public void UnloadContent()
         {

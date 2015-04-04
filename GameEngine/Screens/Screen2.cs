@@ -107,8 +107,7 @@ namespace GameEngine
                 for (int j = 0; j < 20; j++)
                 {
                     Star star = new Star(this);
-                    star.LoadContent(ContentManager);
-                    Layers["MovebleObjects"].Objekty.Add(star);
+                    Layers["MovebleObjects"].AddObject(star);
                 }
 
                 int i = (int)MainCam.MoveSpeed;

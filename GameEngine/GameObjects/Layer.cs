@@ -8,17 +8,21 @@ namespace GameEngine.GameObjects
     public class Layer
     {
         private GameObject[] _objekty;
-        public List<GameObject> Objekty = new List<GameObject>();
+
         protected readonly GameScreen GameScreen;
         protected readonly ScreenManager ScreenManager;
+
+        public List<GameObject> Objekty = new List<GameObject>();
         public bool CameraDependent { get; protected set; }
         public string Name { get; set; }
+
         public Layer(GameScreen gameScreen,bool cameraDependent = true)
         {
             GameScreen = gameScreen;
             ScreenManager = GameScreen.ScreenManager;
             CameraDependent = cameraDependent;
         }
+
         public void LoadContent(ContentManager contentManager,string name)
         {
             Name = name;

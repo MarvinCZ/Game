@@ -67,7 +67,7 @@ namespace GameEngine.GameObjects
         {
             for (int i = 0; i < obj.Count; i++)
             {
-                if (obj[i] is SpriteObject && ((SpriteObject)obj[i]).IsSolid && obj[i] != this)
+                if (obj[i] is SpriteObject && ((SpriteObject)obj[i]).Solid && obj[i] != this)
                 {
                     if (((SpriteObject)obj[i]).ColisionBox.ColideWhith(ColisionBox))
                         return (SpriteObject)obj[i];

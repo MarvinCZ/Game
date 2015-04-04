@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
@@ -9,31 +8,23 @@ namespace GameEngine.GameObjects
 {
     public abstract class SpriteObject : GameObject, IFollowable
     {
+        private Texture2D _texture;
+        private Rectangle _boundingBox;
 
         protected float PositionX;
         protected float PositionY;
         protected float OriginX;
         protected float OriginY;
 
+        protected List<Sound> Sounds;
+
         protected int SpriteColorR;
         protected int SpriteColorG;
         protected int SpriteColorB;
         public float SpriteColorAlfa = 1f;
-        private Texture2D _texture;
-        protected bool Solid;
-        private Rectangle _boundingBox;
 
+        public bool Solid { get; protected set; }
         public ColisionBox ColisionBox { protected set; get; }
-
-        protected List<Sound> Sounds;
-
-        public bool IsSolid
-        {
-            get
-            {
-                return Solid;
-            }
-        }
 
         /// <summary>
         /// textura pro vykresleni

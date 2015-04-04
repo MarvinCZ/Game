@@ -9,8 +9,8 @@ namespace GameEngine.HelpObjects
     /// </summary>
     public class ColisionBox
     {
-        protected SpriteObject objekt;
-        public BoxType Type;
+        protected readonly SpriteObject Objekt;
+        public readonly BoxType Type;
         public List<ColisionBox> Boxes;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace GameEngine.HelpObjects
         public ColisionBox(SpriteObject obj)
         {
             Type = BoxType.Rectangle;
-            objekt = obj;
+            Objekt = obj;
         }
 
         /// <summary>
@@ -37,35 +37,35 @@ namespace GameEngine.HelpObjects
         /// <summary>
         /// Vyhodnoceni kolize
         /// </summary>
-        /// <param name="cbox">Box pro druhej objekt</param>
+        /// <param name="otherBox">Box pro druhej objekt</param>
         /// <returns>Vrati true kdyz nastane kolize</returns>
-        public bool ColideWhith(ColisionBox cbox)
+        public bool ColideWhith(ColisionBox otherBox)
         {
-            if (objekt.BoundingBox.Intersects(cbox.objekt.BoundingBox))
+            if (Objekt.BoundingBox.Intersects(otherBox.Objekt.BoundingBox))
             {
-                if (Boxes == null && cbox.Boxes == null)
+                if (Boxes == null && otherBox.Boxes == null)
                 {
                     if (Type == BoxType.Rectangle)
                     {
-                        if (cbox.Type == BoxType.Rectangle)
+                        if (otherBox.Type == BoxType.Rectangle)
                         {
                             return true;
                         }
-                        if (cbox.Type == BoxType.Circle)
-                            return cirkleInRectangle(cbox.objekt.BoundingBox.Center, cbox.objekt.BoundingBox.Width / 2, objekt.BoundingBox);
+                        if (otherBox.Type == BoxType.Circle)
+                            return CirkleInRectangle(otherBox.Objekt.BoundingBox.Center, otherBox.Objekt.BoundingBox.Width / 2, Objekt.BoundingBox);
                     }
                     else
                     {
-                        if (cbox.Type == BoxType.Rectangle)
+                        if (otherBox.Type == BoxType.Rectangle)
                         {
-                            return cirkleInRectangle(objekt.BoundingBox.Center, objekt.BoundingBox.Width / 2, cbox.objekt.BoundingBox);                            
+                            return CirkleInRectangle(Objekt.BoundingBox.Center, Objekt.BoundingBox.Width / 2, otherBox.Objekt.BoundingBox);                            
                         }
-                        if (cbox.Type == BoxType.Circle)
+                        if (otherBox.Type == BoxType.Circle)
                         {
-                            Point center = cbox.objekt.BoundingBox.Center;
-                            Point center2 = objekt.BoundingBox.Center;
-                            int radius = cbox.objekt.BoundingBox.Width / 2;
-                            int radius2 = objekt.BoundingBox.Width / 2;
+                            Point center = otherBox.Objekt.BoundingBox.Center;
+                            Point center2 = Objekt.BoundingBox.Center;
+                            int radius = otherBox.Objekt.BoundingBox.Width / 2;
+                            int radius2 = Objekt.BoundingBox.Width / 2;
                             int x = center.X - center2.X;
                             int y = center.Y - center2.Y;
                             int rad = radius + radius2;
@@ -79,35 +79,35 @@ namespace GameEngine.HelpObjects
                         }
                     }
                 }
-                if (Boxes != null && cbox.Boxes == null)
+                if (Boxes != null && otherBox.Boxes == null)
                 {
                     for (int i = 0; i < Boxes.Count; i++)
                     {
-                        if (cbox.ColideWhith(Boxes[i]))
+                        if (otherBox.ColideWhith(Boxes[i]))
                         {
                             return true;
                         }
                     }
                     return false;
                 }
-                if (Boxes == null && cbox.Boxes != null)
+                if (Boxes == null && otherBox.Boxes != null)
                 {
-                    for (int i = 0; i < cbox.Boxes.Count; i++)
+                    for (int i = 0; i < otherBox.Boxes.Count; i++)
                     {
-                        if (ColideWhith(cbox.Boxes[i]))
+                        if (ColideWhith(otherBox.Boxes[i]))
                         {
                             return true;
                         }
                     }
                     return false;
                 }
-                if (Boxes != null && cbox.Boxes != null)
+                if (Boxes != null && otherBox.Boxes != null)
                 {
-                    for (int i = 0; i < cbox.Boxes.Count; i++)
+                    for (int i = 0; i < otherBox.Boxes.Count; i++)
                     {
                         for (int j = 0; j < Boxes.Count; j++)
                         {
-                            if (cbox.Boxes[i].ColideWhith(Boxes[j]))
+                            if (otherBox.Boxes[i].ColideWhith(Boxes[j]))
                             {
                                 return true;
                             }
@@ -123,7 +123,7 @@ namespace GameEngine.HelpObjects
             Rectangle,
             Circle
         }
-        bool pointInCirkle(Point pnt, Point center, int radius)
+        bool PointInCirkle(Point pnt, Point center, int radius)
         {
             int x = pnt.X - center.X;
             int y = pnt.Y - center.Y;
@@ -135,7 +135,7 @@ namespace GameEngine.HelpObjects
                 return true;
             return false;
         }
-        bool cirkleInRectangle(Point center, int radius, Rectangle rect)
+        bool CirkleInRectangle(Point center, int radius, Rectangle rect)
         {
             Point topleft = new Point(rect.Left, rect.Top);
             Point topright = new Point(rect.Right, rect.Top);
@@ -145,13 +145,13 @@ namespace GameEngine.HelpObjects
                 return true;
             if (center.Y > topleft.Y && center.Y < botright.Y)
                 return true;
-            if (pointInCirkle(topleft, center, radius))
+            if (PointInCirkle(topleft, center, radius))
                 return true;
-            if (pointInCirkle(topright, center, radius))
+            if (PointInCirkle(topright, center, radius))
                 return true;
-            if (pointInCirkle(botleft, center, radius))
+            if (PointInCirkle(botleft, center, radius))
                 return true;
-            if (pointInCirkle(botright, center, radius))
+            if (PointInCirkle(botright, center, radius))
                 return true;
             return false; 
         }

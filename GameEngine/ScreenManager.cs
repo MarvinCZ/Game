@@ -9,13 +9,15 @@ using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace GameEngine
 {
-    public class ScreenManager : Game{
-        public readonly List<GameScreen> Screens = new List<GameScreen>();
+    public class ScreenManager : Game
+    {
         private GameScreen _activeScreen;
         private bool _fullscreen;
+        private readonly GraphicsDeviceManager _graphicDeviceManager;
+
+        public readonly List<GameScreen> Screens = new List<GameScreen>();
         public MouseState LastMouseState;
         public KeyboardState LastKeyboardState;
-        private readonly GraphicsDeviceManager _graphicDeviceManager;
 
         public ScreenManager()
         {

@@ -12,14 +12,14 @@ namespace GameEngine
     /// </summary>
     public abstract class GameScreen{
         private SpriteBatch _spriteBatch;
-        protected bool Paused;
         private List<GameObject> _pauseObjects;
 
+        protected bool Paused;
         protected readonly ContentManager ContentManager;
+
         public readonly ScreenManager ScreenManager;
         public IFollowable ShowUnder;
         public abstract string Name { get; }
-
         public readonly Dictionary<string,Layer> Layers = new Dictionary<string, Layer>();
         public Camera MainCam { get; protected set; }
 

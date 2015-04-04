@@ -15,20 +15,20 @@ namespace GameEngine.Objects
             float scale = 0.5f;
             Scale = new Vector2(scale, scale);
             Position = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
-            smer = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
-            smer.Normalize();
+            Smer = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
+            Smer.Normalize();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (colideX)
+            if (ColideX)
             {
-                smer = new Vector2(-smer.X,smer.Y);
+                Smer = new Vector2(-Smer.X,Smer.Y);
             }
-            else if (colideY)
+            else if (ColideY)
             {
-                smer = new Vector2(smer.X, -smer.Y);
+                Smer = new Vector2(Smer.X, -Smer.Y);
             }
         }
 

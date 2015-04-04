@@ -17,7 +17,7 @@ namespace GameEngine.Screens
             Layers["SolidObjects"].Objekty.Add(new Box(this, new Vector2(-500, 498), new Vector2(500, 500)));
             Layers["SolidObjects"].Objekty.Add(new Box(this, new Vector2(498, -500), new Vector2(500, 500)));
             Layers["SolidObjects"].Objekty.Add(new Box(this, new Vector2(-250, -30), new Vector2(250, -28)));
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Layers["MovebleObjects"].Objekty.Add(new Bounci(this));
             }

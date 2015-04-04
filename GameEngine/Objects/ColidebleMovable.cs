@@ -39,7 +39,7 @@ namespace GameEngine.Objects
             {
                 y = 1;
             }
-            smer = new Vector2(x, y);
+            Smer = new Vector2(x, y);
             base.Update(gameTime);
         }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using GameEngine.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
@@ -6,56 +8,77 @@ namespace GameEngine.GameObjects
 {
     public abstract class MovableObject : SpriteObject
     {
-        protected bool colideX;
-        protected bool colideY;
-        protected float rychlost;
-        protected Vector2 smer;
+        protected bool ColideX;
+        protected bool ColideY;
+        protected float Rychlost;
+        protected Vector2 Smer;
+        public List<SpriteObject> KolidedObjects = new List<SpriteObject>();
         public MovableObject(GameScreen game) : base(game){
             SpriteColor = Color.Red;
-            smer = new Vector2(0, 0);
-            rychlost = 5f;
+            Smer = new Vector2(0, 0);
+            Rychlost = 1.5f;
             Solid = true;
         }
 
         public override void Update(GameTime gameTime)
         {
-            colideX = false;
-            colideY = false;
+            ColideX = false;
+            ColideY = false;
             //TODO: melo by zmizet
-            if (kolize(GameScreen.Layers["SolidObjects"].Objekty))
+            if (Kolize(GameScreen.Layers["SolidObjects"].Objekty) != null)
             {
-                Position += smer * rychlost;
+                Position += Smer * Rychlost;
             }
-            else if (smer.X != 0 || smer.Y != 0)
+            else if (Smer.X != 0f || Smer.Y != 0)
             {
-                smer.Normalize();
-                Position += new Vector2(smer.X, 0) * rychlost;
-                while (kolize(GameScreen.Layers["SolidObjects"].Objekty) || kolize(GameScreen.Layers["MovebleObjects"].Objekty))
+                Smer.Normalize();
+                Position += new Vector2(Smer.X, 0) * Rychlost;
+                KolidedObjects = new List<SpriteObject>();
+                SpriteObject kolided;
+                while ((kolided = Kolize(GameScreen.Layers["SolidObjects"].Objekty)) != null || (kolided = Kolize(GameScreen.Layers["MovebleObjects"].Objekty)) != null)
                 {
-                    colideX = true;
-                    Position -= new Vector2(smer.X, 0)*0.5f;
+                    if(!KolidedObjects.Contains(kolided))
+                        KolidedObjects.Add(kolided);
+                    ColideX = true;
+                    Position -= new Vector2(Smer.X, 0) * 0.5f;
                 }
-                Position += new Vector2(0, smer.Y) * rychlost;
-                while (kolize(GameScreen.Layers["SolidObjects"].Objekty) || kolize(GameScreen.Layers["MovebleObjects"].Objekty))
+                Position += new Vector2(0, Smer.Y) * Rychlost;
+                while ((kolided = Kolize(GameScreen.Layers["SolidObjects"].Objekty)) != null || (kolided = Kolize(GameScreen.Layers["MovebleObjects"].Objekty)) != null)
                 {
-                    colideY = true;
-                    Position -= new Vector2(0, smer.Y) * 0.5f;
+                    if (!KolidedObjects.Contains(kolided))
+                        KolidedObjects.Add(kolided);
+                    ColideY = true;
+                    Position -= new Vector2(0, Smer.Y) * 0.5f;
+                }
+                foreach (SpriteObject kolidedObject in KolidedObjects)
+                {
+                    if (!(kolidedObject is Bounci)){
+                        Console.Write("random");
+                    }
+                    if (!(kolidedObject is MovableObject && ((MovableObject) kolidedObject).KolidedObjects.Contains(this))){
+                        if (kolidedObject is ICollisionReaction)
+                            ((ICollisionReaction) kolidedObject).CollisionReaction(this);
+                        if (this is ICollisionReaction)
+                            ((ICollisionReaction) this).CollisionReaction(kolidedObject);
+                    }
                 }
             }
             base.Update(gameTime);
         }
 
         public abstract override void LoadContent(ContentManager content);
-        bool kolize(List<GameObject> obj){
+
+        SpriteObject Kolize(IReadOnlyList<GameObject> obj)
+        {
             for (int i = 0; i < obj.Count; i++)
             {
                 if (obj[i] is SpriteObject && ((SpriteObject)obj[i]).IsSolid && obj[i] != this)
                 {
                     if (((SpriteObject)obj[i]).ColisionBox.ColideWhith(ColisionBox))
-                        return true;
+                        return (SpriteObject)obj[i];
                 }
             }
-            return false;
+            return null;
         }
     }
 }

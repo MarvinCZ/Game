@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.Objects
 {
-    class Bounci : MovableObject
+    class Bounci : MovableObject, ICollisionReaction
     {
         public Bounci(GameScreen game)
             : base(game)
@@ -17,6 +17,7 @@ namespace GameEngine.Objects
             Position = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
             Smer = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
             Smer.Normalize();
+            SpriteColor = Color.Red;
         }
 
         public override void Update(GameTime gameTime)
@@ -38,6 +39,11 @@ namespace GameEngine.Objects
             {
                 Texture = content.Load<Texture2D>("Sprites/hvezda");
             }
+        }
+
+        public void CollisionReaction(GameObject obj)
+        {
+            SpriteColor = new Color(SpriteColorB,SpriteColorR,SpriteColorG);
         }
     }
 }

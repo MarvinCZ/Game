@@ -6,6 +6,7 @@ namespace GameEngine.GameObjects
     public abstract class GameObject{
         protected readonly Game ScreenManager;
         protected readonly GameScreen GameScreen;
+        public Layer Layer;
         /// <summary>
         /// Vrati pocet volani metody update
         /// </summary>

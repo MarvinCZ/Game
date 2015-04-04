@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GameEngine.Objects;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
@@ -16,7 +14,7 @@ namespace GameEngine.GameObjects
         public MovableObject(GameScreen game) : base(game){
             SpriteColor = Color.Red;
             Smer = new Vector2(0, 0);
-            Rychlost = 1.5f;
+            Rychlost = 5f;
             Solid = true;
         }
 
@@ -52,10 +50,7 @@ namespace GameEngine.GameObjects
                 }
                 foreach (SpriteObject kolidedObject in KolidedObjects)
                 {
-                    if (!(kolidedObject is Bounci)){
-                        Console.Write("random");
-                    }
-                    if (!(kolidedObject is MovableObject && ((MovableObject) kolidedObject).KolidedObjects.Contains(this))){
+                    if (!(kolidedObject is MovableObject) || !(((MovableObject) kolidedObject).KolidedObjects.Contains(this))){
                         if (kolidedObject is ICollisionReaction)
                             ((ICollisionReaction) kolidedObject).CollisionReaction(this);
                         if (this is ICollisionReaction)

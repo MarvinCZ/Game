@@ -25,6 +25,7 @@ namespace GameEngine.GameObjects
             foreach (GameObject objekt in Objekty)
             {
                 objekt.LoadContent(contentManager);
+                objekt.Layer = this;
             }
         }
         public void UnloadContent()

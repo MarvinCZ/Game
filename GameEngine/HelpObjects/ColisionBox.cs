@@ -13,24 +13,18 @@ namespace GameEngine.HelpObjects
         public readonly BoxType Type;
         public List<ColisionBox> Boxes;
 
-        /// <summary>
-        /// Bez boxu, box bude obdelnik
-        /// </summary>
-        /// <param name="obj">Objek pro ktery se resi kolize</param>
-        public ColisionBox(SpriteObject obj)
+        public Rectangle Box
         {
-            Type = BoxType.Rectangle;
-            Objekt = obj;
+            get { return Objekt.GetBoundingBoxForColision(); }
         }
-
         /// <summary>
         /// S nastavitelnym boxem
         /// </summary>
         /// <param name="obj">Objek pro ktery se resi kolize</param>
         /// <param name="btype">Typ boxu (obdelnik, kruh)</param>
-        public ColisionBox(SpriteObject obj, BoxType btype)
-            : this(obj)
+        public ColisionBox(SpriteObject obj, BoxType btype = BoxType.Rectangle)
         {
+            Objekt = obj;
             Type = btype;
         }
 
@@ -41,7 +35,7 @@ namespace GameEngine.HelpObjects
         /// <returns>Vrati true kdyz nastane kolize</returns>
         public bool ColideWhith(ColisionBox otherBox)
         {
-            if (Objekt.BoundingBox.Intersects(otherBox.Objekt.BoundingBox))
+            if (Box.Intersects(otherBox.Box))
             {
                 if (Boxes == null && otherBox.Boxes == null)
                 {
@@ -52,20 +46,20 @@ namespace GameEngine.HelpObjects
                             return true;
                         }
                         if (otherBox.Type == BoxType.Circle)
-                            return CirkleInRectangle(otherBox.Objekt.BoundingBox.Center, otherBox.Objekt.BoundingBox.Width / 2, Objekt.BoundingBox);
+                            return CirkleInRectangle(otherBox.Box.Center, otherBox.Box.Width / 2, Box);
                     }
                     else
                     {
                         if (otherBox.Type == BoxType.Rectangle)
                         {
-                            return CirkleInRectangle(Objekt.BoundingBox.Center, Objekt.BoundingBox.Width / 2, otherBox.Objekt.BoundingBox);                            
+                            return CirkleInRectangle(Box.Center, Box.Width / 2, otherBox.Box);                            
                         }
                         if (otherBox.Type == BoxType.Circle)
                         {
-                            Point center = otherBox.Objekt.BoundingBox.Center;
-                            Point center2 = Objekt.BoundingBox.Center;
-                            int radius = otherBox.Objekt.BoundingBox.Width / 2;
-                            int radius2 = Objekt.BoundingBox.Width / 2;
+                            Point center = otherBox.Box.Center;
+                            Point center2 = Box.Center;
+                            int radius = otherBox.Box.Width / 2;
+                            int radius2 = Box.Width / 2;
                             int x = center.X - center2.X;
                             int y = center.Y - center2.Y;
                             int rad = radius + radius2;

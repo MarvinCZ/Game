@@ -186,5 +186,10 @@ namespace GameEngine.GameObjects
             r.Offset((int)(-OriginX * Scale.X), (int)(-OriginY * Scale.Y));
             _boundingBox = r;
         }
+
+        public virtual Rectangle GetBoundingBoxForColision()
+        {
+            return _boundingBox;
+        }
     }
 }

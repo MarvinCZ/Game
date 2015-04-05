@@ -49,6 +49,8 @@ namespace GameEngine
 
         public void UnloadContent(){
             ContentManager.Unload();
+            _pauseObjects = new List<GameObject>();
+            Paused = false;
             foreach (Layer layer in Layers.Values)
             {
                 layer.UnloadContent();

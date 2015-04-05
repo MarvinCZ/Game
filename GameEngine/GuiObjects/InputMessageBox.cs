@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameEngine.GameObjects
+namespace GameEngine.GuiObjects
 {
     public class InputMessageBox : MessageBox{
-        protected readonly TextObject input;
+        protected readonly TextObject Input;
         private readonly Regex _regex;
         private KeyboardState _oldKeyboardState;
         private KeyboardState _curentKeyboardState;
-        public string Input;
+        public string InputText;
 
         public InputMessageBox(GameScreen game, string message, bool storno = true) : base(game, message, storno){
-            input = new TextObject(game,"",Color.Green);
-            Input = "";
-            this.Objects.Add(input);
+            Input = new TextObject(game,"",Color.Green);
+            InputText = "";
+            Objects.Add(Input);
         }
 
         public InputMessageBox(GameScreen game, string message, Regex rex, bool storno = true) : this(game, message, storno){
@@ -26,13 +27,13 @@ namespace GameEngine.GameObjects
 
         protected override void MouseOkClick(object sender, EventArgs e)
         {
-            if (_regex == null || _regex.IsMatch(input.Text))
+            if (_regex == null || _regex.IsMatch(Input.Text))
                 base.MouseOkClick(sender, e);
             else{
-                if (!message.Text.Contains("špatný formát"))
+                if (!Message.Text.Contains("špatný formát"))
                 {
-                    message.Text += " špatný formát";
-                    message.SpriteColor = Color.Blue;
+                    Message.Text += " špatný formát";
+                    Message.SpriteColor = Color.Blue;
                 }
             }
         }
@@ -46,8 +47,8 @@ namespace GameEngine.GameObjects
                           _curentKeyboardState.IsKeyDown(Keys.RightShift)) ||
                          _curentKeyboardState.IsKeyDown(Keys.CapsLock);
             for (int i = 0; i < pressed.Length; i++){
-                if (pressed[i] == Keys.Back && _oldKeyboardState.IsKeyUp(Keys.Back) && Input.Length != 0){
-                    Input = Input.Remove(Input.Length - 1, 1);
+                if (pressed[i] == Keys.Back && _oldKeyboardState.IsKeyUp(Keys.Back) && InputText.Length != 0){
+                    InputText = InputText.Remove(InputText.Length - 1, 1);
                 }
                 else if (pressed[i] == Keys.Enter){
                     MouseOkClick(null,new EventArgs());
@@ -55,35 +56,35 @@ namespace GameEngine.GameObjects
                 else if (_oldKeyboardState.IsKeyUp(pressed[i])){
                     string inpt = GameHelper.Instance.TextFromKey(pressed[i], shift);
                     if (inpt != null)
-                        Input += inpt;
+                        InputText += inpt;
                 }
             }
             //input.Update(gameTime);
-            input.Text = Input;
-            float lengh = input.BoundingBox.Width;
+            Input.Text = InputText;
+            float lengh = Input.BoundingBox.Width;
             if (lengh < 100f)
                 lengh = 100f;
             lengh += Buttons[0].BoundingBox.Width;
             lengh += 15f;
-            if (storno)
+            if (Storno)
                 lengh += Buttons[1].BoundingBox.Width;
-            if (lengh < message.BoundingBox.Width)
-                lengh = message.BoundingBox.Width;
+            if (lengh < Message.BoundingBox.Width)
+                lengh = Message.BoundingBox.Width;
             Scale = new Vector2((lengh / Texture.Width) + 0.2f, 1);
             Reposition();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch){
             base.Draw(gameTime, spriteBatch);
-            input.Draw(gameTime,spriteBatch);
+            Input.Draw(gameTime,spriteBatch);
         }
 
         public override void LoadContent(ContentManager content)
         {
-            message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            Message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             ((ClickableText)Buttons[0]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Texture = content.Load<Texture2D>("BackGrounds/MessageBox");
-            input.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            Input.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             ((ClickableText)Buttons[1]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Reposition();
         }
@@ -101,8 +102,8 @@ namespace GameEngine.GameObjects
             ((ClickableText)Buttons[1]).Position = Position + position;
             ((ClickableText)Buttons[1]).HorizontAlignment = TextObject.TextAlignment.Far;
             position = new Vector2(-width + 10f, Texture.Height/4f);
-            input.Position = Position + position;
-            input.HorizontAlignment = TextObject.TextAlignment.Near;
+            Input.Position = Position + position;
+            Input.HorizontAlignment = TextObject.TextAlignment.Near;
         }
     }
 }

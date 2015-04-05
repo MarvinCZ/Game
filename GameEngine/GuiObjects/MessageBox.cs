@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameEngine.GameObjects
+namespace GameEngine.GuiObjects
 {
     public class MessageBox : SpriteObject{
-        protected readonly TextObject message;
+        protected readonly TextObject Message;
         public readonly List<SpriteObject> Buttons = new List<SpriteObject>();
         protected readonly List<GameObject> Objects = new List<GameObject>(); 
-        protected readonly bool storno;
+        protected readonly bool Storno;
         public Result MessageResult;
 
         protected event EventHandler OnExit;
         public MessageBox(GameScreen game, String message, bool storno = true) : base(game){
-            this.message = new TextObject(game,message,Color.Red);
+            Message = new TextObject(game,message,Color.Red);
             Buttons.Add(new ClickableText(game, "OK", new Vector2(), Color.Red, MouseOkClick));
             Buttons.Add(new ClickableText(game, "STORNO", new Vector2(), Color.Red, MouseStornoClick));
-            this.storno = storno;
+            Storno = storno;
             Objects.Add(this);
-            Objects.Add(this.message);
+            Objects.Add(Message);
             Objects.Add(Buttons[0]);
             if(storno)
                 Objects.Add(Buttons[1]);
@@ -53,7 +54,7 @@ namespace GameEngine.GameObjects
             OnExit += ev;
         }
 
-        public void Destroy()
+        public new void Destroy()
         {
             foreach (GameObject gameObject in Objects)
             {
@@ -64,7 +65,7 @@ namespace GameEngine.GameObjects
 
         public override void Update(GameTime gameTime){
             base.Update(gameTime);
-            if (storno){
+            if (Storno){
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape)){
                     MouseStornoClick(null,new EventArgs());
                 }
@@ -74,7 +75,7 @@ namespace GameEngine.GameObjects
         }
 
         public override void LoadContent(ContentManager content){
-            message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
+            Message.Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             ((ClickableText)Buttons[0]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             ((ClickableText)Buttons[1]).Font = content.Load<SpriteFont>("SpriteFonts/pismo");
             Texture = content.Load<Texture2D>("BackGrounds/MessageBox");
@@ -82,7 +83,7 @@ namespace GameEngine.GameObjects
         }
 
         protected virtual void Reposition(){
-            float x = message.BoundingBox.Width;
+            float x = Message.BoundingBox.Width;
             if (x > Scale.X*Texture.Width)
             {
                 Scale = new Vector2((x / Texture.Width) + 0.2f, 1);
@@ -91,9 +92,9 @@ namespace GameEngine.GameObjects
                 ScreenManager.GraphicsDevice.Viewport.Bounds.Width / 2f,
                 ScreenManager.GraphicsDevice.Viewport.Bounds.Height / 2f);
             Vector2 position = new Vector2(0f,Texture.Height/4f);
-            message.Position = Position - position;
+            Message.Position = Position - position;
             float celek = Buttons[0].BoundingBox.Width;
-            if(storno)
+            if(Storno)
                 celek += 20f + Buttons[1].BoundingBox.Width;
             celek /= 2;
             position = new Vector2(-celek, Texture.Height / 4f);

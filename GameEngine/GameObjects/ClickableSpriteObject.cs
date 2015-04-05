@@ -25,7 +25,7 @@ namespace GameEngine.GameObjects
             }
         }
         public override void Update(GameTime gameTime){
-            Update(gameTime, CameraDependent ? (GameScreen.MainCam != null ? GameScreen.MainCam.TransformMatrix : Matrix.Identity) : Matrix.Identity);
+            Update(gameTime, (CameraDependent && GameScreen.MainCam != null) ? GameScreen.MainCam.TransformMatrix : Matrix.Identity);
         }
     }
 }

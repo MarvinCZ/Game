@@ -16,7 +16,7 @@ namespace GameEngine.Objects
         public Ctverec(GameScreen game)
             : base(game){
             RestrartMe();
-            //_box = new Box(ScreenManager,new Vector2(),new Vector2());
+            //_box = new Box(GameScreen, new Vector2(), new Vector2());
         }
 
         public float MoveSpeed{
@@ -35,9 +35,9 @@ namespace GameEngine.Objects
                 SpriteColorAlfa <= 0f){
                 RestrartMe();
                 }
-            //_box.point1 = new Vector2(BoundingBox.X, BoundingBox.Y);
-            //_box.point2 = new Vector2(BoundingBox.X+BoundingBox.Height, BoundingBox.Y+BoundingBox.Width);
-            //_box.recalc();
+            //_box.Point1 = new Vector2(BoundingBox.X, BoundingBox.Y);
+            //_box.Point2 = new Vector2(BoundingBox.X + BoundingBox.Height, BoundingBox.Y + BoundingBox.Width);
+            //_box.ReCalc();
         }
 
         //public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

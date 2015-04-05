@@ -9,12 +9,16 @@ namespace GameEngine
     {
 
         private static GameHelper _instance;
-        public Keys ZoomIn { get { return Keys.PageDown; } }
-        public Keys ZoomOut { get { return Keys.PageUp; } }
-        public Keys RotateRight { get { return Keys.Home; } }
-        public Keys RotateLeft { get { return Keys.End; } }
-        public Keys CamMoveSpeedPlus { get { return Keys.Add; } }
-        public Keys CamMoveSpeedMinus { get { return Keys.Subtract; } }
+        public Keys ZoomIn = Keys.PageDown;
+        public Keys ZoomOut = Keys.PageUp;
+        public Keys RotateRight = Keys.Home;
+        public Keys RotateLeft = Keys.End;
+        public Keys CamMoveSpeedPlus = Keys.Add;
+        public Keys CamMoveSpeedMinus = Keys.Subtract;
+        public Keys PlayerMoveUp = Keys.W;
+        public Keys PlayerMoveDown = Keys.S;
+        public Keys PlayerMoveLeft = Keys.A;
+        public Keys PlayerMoveRight = Keys.D;
 
         private GameHelper(){
             _random = new Random();

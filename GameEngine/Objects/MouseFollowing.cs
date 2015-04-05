@@ -11,10 +11,11 @@ namespace GameEngine.Objects
         }
 
         public override void Update(GameTime gameTime){
-                Vector2 mouse = Mouse.GetState().Position.ToVector2();
-                Matrix inversTransform = Matrix.Invert(GameScreen.MainCam.TransformMatrix);
-                Vector2.Transform(ref mouse, ref inversTransform, out mouse);
-                Position = mouse;
+            Vector2 mouse = Mouse.GetState().Position.ToVector2();
+            Matrix inversTransform =
+                Matrix.Invert(GameScreen.MainCam != null ? GameScreen.MainCam.TransformMatrix : Matrix.Identity);
+            Vector2.Transform(ref mouse, ref inversTransform, out mouse);
+            Position = mouse;
             base.Update(gameTime);
         }
 

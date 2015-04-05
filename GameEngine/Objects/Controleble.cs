@@ -16,19 +16,19 @@ namespace GameEngine.Objects
         {
             float x = 0;
             float y = 0;
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveLeft))
             {
                 x = -1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveRight))
             {
                 x = 1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveUp))
             {
                 y = -1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveDown))
             {
                 y = 1;
             }

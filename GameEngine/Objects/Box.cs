@@ -8,33 +8,33 @@ namespace GameEngine.Objects
 {
     class Box : SpriteObject
     {
-        public Vector2 point1;
-        public Vector2 point2;
+        public Vector2 Point1;
+        public Vector2 Point2;
         public Box(GameScreen screen, Vector2 point1, Vector2 point2)
             : base(screen)
         {
-            this.point1 = point1;
-            this.point2 = point2;
+            Point1 = point1;
+            Point2 = point2;
             Solid = true;
             ColisionBox = new ColisionBox(this, ColisionBox.BoxType.Rectangle);
-            //spriteColorAlfa = 0.7f;
+            //SpriteColorAlfa = 0.7f;
             SpriteColor = Color.Yellow;
         }
 
         public override void LoadContent(ContentManager content)
         {
             Texture = content.Load<Texture2D>("Sprites/ctverecek");
-            recalc();
+            ReCalc();
         }
 
-        public void recalc()
+        public void ReCalc()
         {
-            float whidth = point2.X - point1.X;
-            float height = point2.Y - point1.Y;
+            float whidth = Point2.X - Point1.X;
+            float height = Point2.Y - Point1.Y;
             Scale = new Vector2(
                 whidth / Texture.Width,
                 height / Texture.Height);
-            Position = point1;
+            Position = Point1;
             Origin = new Vector2(0, 0);
         }
     }

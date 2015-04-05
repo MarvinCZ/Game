@@ -2,10 +2,9 @@
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.Objects;
-using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine
+namespace GameEngine.Screens
 {
     class TestScreen : GameScreen
     {

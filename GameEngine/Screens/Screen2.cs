@@ -2,12 +2,12 @@
 using System.Linq;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
+using GameEngine.GuiObjects;
 using GameEngine.Objects;
-using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameEngine
+namespace GameEngine.Screens
 {
     class Screen2 : GameScreen{
         private TextObject _ukazatel;
@@ -62,7 +62,7 @@ namespace GameEngine
         void SwitchScreen(object sender, EventArgs e){
             if (sender is InputMessageBox){
                 InputMessageBox imb = (InputMessageBox) sender;
-                if (imb.Input == "STORNO")
+                if (imb.InputText == "STORNO")
                     return;
             }
             MessageBox mb = (MessageBox) sender;

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameEngine.GameObjects
 {
     public abstract class GameObject{
-        protected readonly Game ScreenManager;
+        protected readonly ScreenManager ScreenManager;
         protected readonly GameScreen GameScreen;
         public Layer Layer;
         /// <summary>
@@ -25,6 +25,7 @@ namespace GameEngine.GameObjects
         protected virtual void Destroy()
         {
             Layer.Objekty.Remove(this);
+            UnloadContent();
         }
 
         public abstract void LoadContent(ContentManager content);

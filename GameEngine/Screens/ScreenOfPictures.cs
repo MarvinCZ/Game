@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameEngine.Cameras;
+﻿using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.Objects;
 using Microsoft.Xna.Framework;
@@ -14,7 +9,7 @@ namespace GameEngine.Screens
     class ScreenOfPictures : GameScreen
     {
         private TextObject _selectedObject;
-        private int _selectedNumber = 0;
+        private int _selectedNumber;
 
         public ScreenOfPictures(ScreenManager screenManager) : base(screenManager)
         {
@@ -42,15 +37,10 @@ namespace GameEngine.Screens
                 Scale = new Vector2(0.3f, 0.3f)
             };
             Layers["Gui"].Objekty.Add(_selectedObject);
-            //Layers["Background"].Objekty.Add(new Road(this, "DU"));
-            //Layers["Background"].Objekty.Add(new Road(this, "LD"));
-            //Layers["Background"].Objekty.Add(new Road(this, "LR"));
-            //Layers["Background"].Objekty.Add(new Road(this, "LU"));
-            //Layers["Background"].Objekty.Add(new Road(this, "RD"));
-            //Layers["Background"].Objekty.Add(new Road(this, "RU"));
-            for(int i = 0;i<10;i++)
-                Layers["SolidObjects"].Objekty.Add(new Tree(this, new Vector2(800 * i, 0)));
-            Layers["MovebleObjects"].Objekty.Add(new ColidebleMovable(this));
+            for (int i = 0; i < 10; i++)
+                Layers["Main"].Objekty.Add(new Tree(this, new Vector2(800 * i, 0)));
+            Layers["Main"].Objekty.Add(new Hause(this, new Vector2(80, 800)));
+            Layers["Main"].Objekty.Add(new ColidebleMovable(this));
             base.LoadContent();
         }
 
@@ -84,7 +74,7 @@ namespace GameEngine.Screens
                 Layers["Background"].AddObject(new Road(this, "RD"));
             if (Keyboard.GetState().IsKeyDown(Keys.D6) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D6))
                 Layers["Background"].AddObject(new Road(this, "RU"));
-            _selectedObject.Text = _selectedNumber.ToString();
+            _selectedObject.Text = "1:DU 2:LD 3:LR 4:LU 5:RD 6:RU   Vybrany objekt:" + _selectedNumber.ToString();
         }
     }
 }

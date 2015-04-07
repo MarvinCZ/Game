@@ -25,7 +25,7 @@ namespace GameEngine.Screens
             MainCam = new FreeCamera(this);
             for (int i = 0; i < 0; i++)
             {
-                Layers["MovebleObjects"].Objekty.Add(new Hvezda(this));
+                Layers["Main"].Objekty.Add(new Hvezda(this));
             }
             _ukazatel = new TextObject(this,"5",new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10)){
                 HorizontAlignment = TextObject.TextAlignment.Far,
@@ -53,9 +53,9 @@ namespace GameEngine.Screens
             Layers["Gui"].Objekty.Add(_ukaztelCount);
             Layers["Gui"].Objekty.Add(_ukazatelFPS);
             Layers["Gui"].Objekty.Add(_ukazatelPozice);
-            Layers["MovebleObjects"].Objekty.Add(new Controleble(this));
+            Layers["Main"].Objekty.Add(new Controleble(this));
             Layers["Gui"].Objekty.Add(new ClickTest(this, new Vector2(200, 300), OpenMessageBox));
-            Layers["MovebleObjects"].Objekty.Add(new Soundy(this));
+            Layers["Main"].Objekty.Add(new Soundy(this));
             base.LoadContent();
         }
 
@@ -107,7 +107,7 @@ namespace GameEngine.Screens
                 for (int j = 0; j < 20; j++)
                 {
                     Star star = new Star(this);
-                    Layers["MovebleObjects"].AddObject(star);
+                    Layers["Main"].AddObject(star);
                 }
 
                 int i = (int)MainCam.MoveSpeed;

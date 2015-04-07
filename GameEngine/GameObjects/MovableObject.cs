@@ -23,7 +23,7 @@ namespace GameEngine.GameObjects
             ColideX = false;
             ColideY = false;
             //TODO: melo by zmizet
-            if (Kolize(GameScreen.Layers["SolidObjects"].Objekty) != null)
+            if (Kolize(GameScreen.Layers["Main"].Objekty) != null)
             {
                 Position += Smer * Rychlost;
             }
@@ -33,7 +33,7 @@ namespace GameEngine.GameObjects
                 Position += new Vector2(Smer.X, 0) * Rychlost;
                 KolidedObjects = new List<SpriteObject>();
                 SpriteObject kolided;
-                while ((kolided = Kolize(GameScreen.Layers["SolidObjects"].Objekty)) != null || (kolided = Kolize(GameScreen.Layers["MovebleObjects"].Objekty)) != null)
+                while ((kolided = Kolize(GameScreen.Layers["Main"].Objekty)) != null)
                 {
                     if(!KolidedObjects.Contains(kolided))
                         KolidedObjects.Add(kolided);
@@ -41,7 +41,7 @@ namespace GameEngine.GameObjects
                     Position -= new Vector2(Smer.X, 0) * 0.5f;
                 }
                 Position += new Vector2(0, Smer.Y) * Rychlost;
-                while ((kolided = Kolize(GameScreen.Layers["SolidObjects"].Objekty)) != null || (kolided = Kolize(GameScreen.Layers["MovebleObjects"].Objekty)) != null)
+                while ((kolided = Kolize(GameScreen.Layers["Main"].Objekty)) != null)
                 {
                     if (!KolidedObjects.Contains(kolided))
                         KolidedObjects.Add(kolided);

@@ -20,11 +20,11 @@ namespace GameEngine.Screens
         public override void LoadContent(){
             for (int i = 0; i < PocetHvezd; i++)
             {
-                Layers["MovebleObjects"].Objekty.Add(new Hvezda(this));
+                Layers["Main"].Objekty.Add(new Hvezda(this));
             }
             for (int i = 0; i < PocetCtvercu; i++)
             {
-                Layers["MovebleObjects"].Objekty.Add(new Ctverec(this));
+                Layers["Main"].Objekty.Add(new Ctverec(this));
             }
             _ukazatelFPS = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10))
             {
@@ -34,10 +34,10 @@ namespace GameEngine.Screens
             };
             Layers["Gui"].Objekty.Add(_ukazatelFPS);
             IFollowable follRect = new Controleble(this);
-            Layers["MovebleObjects"].Objekty.Add((SpriteObject)follRect);
+            Layers["Main"].Objekty.Add((SpriteObject)follRect);
             MainCam = new FollowingCamera(this, follRect);
-            Layers["MovebleObjects"].Objekty.Add(new MouseFollowing(this));
-            Layers["MovebleObjects"].Objekty.Add(new RotujciText(this, "necum", new Vector2(0, 0)));
+            Layers["Main"].Objekty.Add(new MouseFollowing(this));
+            Layers["Main"].Objekty.Add(new RotujciText(this, "necum", new Vector2(0, 0)));
             Layers["Gui"].Objekty.Add(new ClickableText(this, "CLICK ME", new Vector2(200, 200), SwitchScreen));
             base.LoadContent();
             

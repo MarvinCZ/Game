@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.GameObjects
 {
@@ -34,10 +33,13 @@ namespace GameEngine.GameObjects
         public abstract void UnloadContent();
         public int CompareTo(GameObject other)
         {
-            if (this is SpriteObject && other is SpriteObject)
-                return (int)(((SpriteObject) this).Position.Y - ((SpriteObject) other).Position.Y);
-            if (this is SpriteObject || other is SpriteObject)
-                return this is SpriteObject ? 1 : -1;
+            //TODO moc narocny na 60xS
+            SpriteObject th = this as SpriteObject;
+            SpriteObject ot = other as SpriteObject;
+            if (th != null && ot != null)
+                return (int)(th.Position.Y - ot.Position.Y);
+            if (th != null || ot != null)
+                return th != null ? 1 : -1;
             return 0;
         }
     }

@@ -72,7 +72,7 @@ namespace GameEngine.Screens
         }
 
         void OpenMessageBox(object sender, EventArgs e){
-            MessageBox mb = new InputMessageBox(this,"Write IP",false);
+            MessageBox mb = new InputMessageBox(this,"Write IP",GameHelper.Instance.RegIp(),false);
             //MessageBox mb = new MessageBox(this, "Vratit do Menu?",true);
             mb.LoadContent(ContentManager);
             mb.Show(SwitchScreen);

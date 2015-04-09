@@ -100,7 +100,8 @@ namespace GameEngine.GameObjects
                 {
                     _objekty[i].Update(gameTime);
                 }
-                SortByY();
+                if(Name == "Main")
+                    SortByY();
             }
         }
 

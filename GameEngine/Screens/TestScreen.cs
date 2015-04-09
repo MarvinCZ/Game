@@ -8,8 +8,8 @@ namespace GameEngine.Screens
 {
     class TestScreen : GameScreen
     {
-        private const int PocetCtvercu = 3000;
-        private const int PocetHvezd = 3000;
+        private const int PocetCtvercu = 5000;
+        private const int PocetHvezd = 5000;
         private TextObject _ukazatelFPS;
         private double _oldTime;
         private int _updates;
@@ -20,11 +20,11 @@ namespace GameEngine.Screens
         public override void LoadContent(){
             for (int i = 0; i < PocetHvezd; i++)
             {
-                Layers["Main"].Objekty.Add(new Hvezda(this));
+                Layers["Background"].Objekty.Add(new Hvezda(this));
             }
             for (int i = 0; i < PocetCtvercu; i++)
             {
-                Layers["Main"].Objekty.Add(new Ctverec(this));
+                Layers["Foreground"].Objekty.Add(new Ctverec(this));
             }
             _ukazatelFPS = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10))
             {

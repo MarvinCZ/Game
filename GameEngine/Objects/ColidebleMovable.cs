@@ -18,6 +18,11 @@ namespace GameEngine.Objects
             Solid = true;
             SpriteColor = new Color(255, 0, 255);
         }
+        public ColidebleMovable(GameScreen game, Vector2 position,string metaData="")
+            : this(game)
+        {
+            Position = position;
+        }
 
         public override void Update(GameTime gameTime)
         {

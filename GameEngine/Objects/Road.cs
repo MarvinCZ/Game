@@ -12,22 +12,19 @@ namespace GameEngine.Objects
 {
     class Road : SpriteObject
     {
-        private string _smer;
-
         public Road(GameScreen game, string smer) : base(game)
         {
-            _smer = smer;
+            MetaData = smer;
         }
 
-        public Road(GameScreen game, string smer, Vector2 position) : base(game, position)
+        public Road(GameScreen game, Vector2 position,string metaData) : base(game,position,metaData)
         {
-            _smer = smer;
         }
         public override void LoadContent(ContentManager content)
         {
             if (Texture == null)
             {
-                Texture = content.Load<Texture2D>("Sprites/road_1_"+_smer);
+                Texture = content.Load<Texture2D>("Sprites/road_1_"+MetaData);
             }
         }
     }

@@ -16,7 +16,7 @@ namespace GameEngine.Objects
 
         }
 
-        public Star(GameScreen game, Vector2 position) : base(game, position){
+        public Star(GameScreen game, Vector2 position,string metaData="") : base(game, position,metaData){
             Scale = new Vector2(0.05f,0.05f);
             _smer = new Vector2(
                 GameHelper.Instance.RandomNext(-1f,1f),

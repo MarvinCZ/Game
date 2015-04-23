@@ -9,7 +9,7 @@ namespace GameEngine.GameObjects
         protected ClickableSpriteObject(GameScreen game) : base(game){
         }
 
-        protected ClickableSpriteObject(GameScreen game, Vector2 position) : base(game, position){
+        protected ClickableSpriteObject(GameScreen game, Vector2 position,string metaData="") : base(game, position,metaData){
         }
 
         public void Update(GameTime gametime, Matrix transform){

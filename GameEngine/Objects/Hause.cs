@@ -13,12 +13,13 @@ namespace GameEngine.Objects
             Solid = true;
             ColisionBox = new ColisionBox(this);
         }
-        public Hause(GameScreen game, Vector2 position)
-            : base(game, position)
+        public Hause(GameScreen game, Vector2 position,string metaData)
+            : base(game, position,metaData)
         {
             Solid = true;
             ColisionBox = new ColisionBox(this);
         }
+
         public override void LoadContent(ContentManager content)
         {
             if (Texture == null){

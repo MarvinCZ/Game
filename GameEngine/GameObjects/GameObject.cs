@@ -14,6 +14,8 @@ namespace GameEngine.GameObjects
         /// </summary>
         protected int UpdateCount;
 
+        public string MetaData { get; protected set; }
+
         protected GameObject(GameScreen game){
             ScreenManager = game.ScreenManager;
             GameScreen = game;

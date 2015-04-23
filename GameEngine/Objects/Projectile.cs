@@ -13,7 +13,7 @@ namespace GameEngine.Objects
         private int _plusG = -1;
         private int _plusR = 2;
         private int _plusB = 1;
-        public Projectile(GameScreen game, Vector2 position) : base(game, position){
+        public Projectile(GameScreen game, Vector2 position, string metaData) : base(game, position,metaData){
             Scale = new Vector2(0.2f,0.2f);
             float rychlost = GameHelper.Instance.RandomNext(2f, 4f);
             float angel = GameHelper.Instance.RandomNext(0f, MathHelper.TwoPi);

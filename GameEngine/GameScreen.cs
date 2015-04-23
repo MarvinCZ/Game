@@ -15,7 +15,7 @@ namespace GameEngine
         private List<GameObject> _pauseObjects;
 
         protected bool Paused;
-        protected readonly ContentManager ContentManager;
+        public readonly ContentManager ContentManager;
 
         public readonly ScreenManager ScreenManager;
         public IFollowable ShowUnder;

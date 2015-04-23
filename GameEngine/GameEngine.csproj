@@ -49,6 +49,7 @@
     <Compile Include="GameObjects\Layer.cs" />
     <Compile Include="GuiObjects\MessageBox.cs" />
     <Compile Include="HelpObjects\ColisionBox.cs" />
+    <Compile Include="HelpObjects\GameObjectPackage.cs" />
     <Compile Include="HelpObjects\ScreenBuilder.cs" />
     <Compile Include="HelpObjects\Sound.cs" />
     <Compile Include="Objects\Bounci.cs" />

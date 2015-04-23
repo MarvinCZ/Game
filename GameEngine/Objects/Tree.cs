@@ -19,16 +19,18 @@ namespace GameEngine.Objects
             Solid = true;
         }
 
-        public Tree(GameScreen game, Vector2 position) : base(game, position)
+
+        public Tree(GameScreen game, Vector2 position,string metaData) : base(game, position,metaData)
         {
             ColisionBox = new ColisionBox(this, ColisionBox.BoxType.Circle);
             Solid = true;
         }
         public override void LoadContent(ContentManager content)
         {
-            if (Texture == null)
-            {
-                Texture = content.Load<Texture2D>("Sprites/tree_1_" + GameHelper.Instance.RandomNext(1,5));
+            if (Texture == null){
+                if (string.IsNullOrEmpty(MetaData))
+                    MetaData = GameHelper.Instance.RandomNext(1, 5).ToString();
+                Texture = content.Load<Texture2D>("Sprites/tree_1_" + MetaData);
                 Origin = new Vector2(390, 820);
             }
         }

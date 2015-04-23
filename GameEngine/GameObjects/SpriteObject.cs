@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using GameEngine.Cameras;
 using GameEngine.HelpObjects;
 using Microsoft.Xna.Framework;
@@ -44,7 +45,7 @@ namespace GameEngine.GameObjects
         /// <summary>
         /// Origin(stred) pro rotaci a scale
         /// </summary>
-        public Vector2 Origin{
+        public virtual Vector2 Origin{
             get{
                 return new Vector2(OriginX, OriginY);
             }
@@ -140,8 +141,10 @@ namespace GameEngine.GameObjects
             Sounds = new List<Sound>();
         }
 
-        protected SpriteObject(GameScreen game,Vector2 position)
-            : this(game){
+        protected SpriteObject(GameScreen game, Vector2 position,string metaData)
+            : this(game)
+        {
+            MetaData = metaData;
             Position = position;
         }
         #endregion

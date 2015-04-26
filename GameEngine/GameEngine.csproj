@@ -167,8 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CDiag.cd" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="GameEngine_ClassDiagram.cd" />
     <None Include="Content\Sounds\zvuk.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

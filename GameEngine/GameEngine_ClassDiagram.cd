@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="GameEngine.ScreenManager">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>RAQAAAAAAAAAAgCAAIAAAAABAAAAAAIAAIAAAAAAgAQ=</HashCode>
+      <FileName>ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameScreen">
+    <Position X="7.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQgEIAAAABAAgAAAAAAAAQAAAAAAABEAIQAAABEAAQ=</HashCode>
+      <FileName>GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameObjects.Layer">
+    <Position X="4.25" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAEABAIABAAgAAAAAAAARABAAAAAAASEAAAAAAAAQ=</HashCode>
+      <FileName>GameObjects\Layer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameObjects.GameObject">
+    <Position X="4.25" Y="10.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAIABAAAQAAAAAAAQAAABAAEAEAAAAAAAAAAQ=</HashCode>
+      <FileName>GameObjects\GameObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEngine.GameObjects.SpriteObject">
+    <Position X="4.25" Y="14.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgQAkAAAAQhADoAgAgIAAAAAEKAABAAIRAIAAAgAAAA=</HashCode>
+      <FileName>GameObjects\SpriteObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEngine.GameObjects.TextObject">
+    <Position X="10.75" Y="17.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="GameEngine.GameObjects.TextObject.TextAlignment">
+        <TypeIdentifier>
+          <NewMemberFileName>GameObjects\TextObject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAEAAgAAAABgAAAAAAAAAAACCAAAFIAAAACAACAAQ=</HashCode>
+      <FileName>GameObjects\TextObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameObjects.MovableObject">
+    <Position X="0.5" Y="19" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAQABABAwAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameObjects\MovableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameObjects.ClickableText">
+    <Position X="10.75" Y="14.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\ClickableText.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEngine.GameObjects.ClickableSpriteObject">
+    <Position X="7.75" Y="14.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\ClickableSpriteObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEngine.Cameras.Camera">
+    <Position X="8" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAGAAABAIJAwEAAAAAAAAAAAAAAIAAAIAAgACAA=</HashCode>
+      <FileName>Cameras\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.Cameras.FollowingCamera">
+    <Position X="11" Y="10.75" Width="2.25" />
+    <InheritanceLine Type="GameEngine.Cameras.Camera" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="10.007" />
+        <Point X="9.25" Y="10.45" />
+        <Point X="12.188" Y="10.45" />
+        <Point X="12.188" Y="10.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cameras\FollowingCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.Cameras.FreeCamera">
+    <Position X="8" Y="10.75" Width="2.25" />
+    <InheritanceLine Type="GameEngine.Cameras.Camera" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="10.007" />
+        <Point X="9.25" Y="10.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cameras\FreeCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.HelpObjects.ColisionBox">
+    <Position X="7.5" Y="20" Width="3" />
+    <NestedTypes>
+      <Enum Name="GameEngine.HelpObjects.ColisionBox.BoxType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>HelpObjects\ColisionBox.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAQQICAAAAAQAAAAAABAA=</HashCode>
+      <FileName>HelpObjects\ColisionBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.HelpObjects.Sound">
+    <Position X="0.5" Y="14.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAABAAAQAABAAAAAQAAAAEAAAAoAAAAEAAAAA=</HashCode>
+      <FileName>HelpObjects\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.HelpObjects.ScreenBuilder">
+    <Position X="11.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAACAAAAIAAAAg=</HashCode>
+      <FileName>HelpObjects\ScreenBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.HelpObjects.GameObjectPackage">
+    <Position X="11.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAEAEAQAAAAAAAAA=</HashCode>
+      <FileName>HelpObjects\GameObjectPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GuiObjects.MessageBox">
+    <Position X="0.5" Y="22.5" Width="2.25" />
+    <NestedTypes>
+      <Enum Name="GameEngine.GuiObjects.MessageBox.Result" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GuiObjects\MessageBox.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAwAAAAAAIAAAIAAABUAAEAAAAAMAAAAAQ=</HashCode>
+      <FileName>GuiObjects\MessageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GuiObjects.InputMessageBox">
+    <Position X="3.25" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAQAgCAAAAAAAAAEQACAAAAAAIAAAAAAAQ=</HashCode>
+      <FileName>GuiObjects\InputMessageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameHelper">
+    <Position X="14.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AEAGAAIAAAgIAAAAAAQAAAAAggQBQICAQQAAAAAAIAE=</HashCode>
+      <FileName>GameHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.Extensions">
+    <Position X="14.5" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GameEngine.GameObjects.IClickable">
+    <Position X="9.25" Y="13" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\IClickable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

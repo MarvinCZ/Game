@@ -21,10 +21,10 @@ namespace GameEngine.HelpObjects
 
         public void LoadScreen()
         {
-            List<GameObjectPackage> packages = new List<GameObjectPackage>();
             if (IsAbleToLoad()){
                 try{
                     XmlSerializer serializer = new XmlSerializer(typeof (List<GameObjectPackage>));
+                    List<GameObjectPackage> packages;
                     using (StreamReader sr = new StreamReader(_screen.Name + ".xml"))
                     {
                         packages = (List<GameObjectPackage>) serializer.Deserialize(sr);

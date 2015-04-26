@@ -1,9 +1,10 @@
-﻿using GameEngine.GameObjects;
+﻿using GameEngine;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Objects
+namespace SecretOfThePast.Objects
 {
     class Hvezda : SpriteObject{
         private readonly float _movespeed;

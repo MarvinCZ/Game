@@ -1,8 +1,9 @@
 ﻿using System;
+using GameEngine;
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Screens
+namespace SecretOfThePast.Screens
 {
     public class MenuScreen : GameScreen
     {

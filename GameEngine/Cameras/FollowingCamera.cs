@@ -5,7 +5,7 @@ namespace GameEngine.Cameras
     /// <summary>
     /// Kamera, ktera se centruje na urcity objekt
     /// </summary>
-    class FollowingCamera : Camera{
+    public class FollowingCamera : Camera{
 
         private readonly IFollowable _followable;
         /// <summary>

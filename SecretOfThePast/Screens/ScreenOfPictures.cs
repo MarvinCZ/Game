@@ -1,11 +1,14 @@
-﻿using GameEngine.Cameras;
+﻿using System;
+using System.Collections.Generic;
+using GameEngine;
+using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.HelpObjects;
-using GameEngine.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using SecretOfThePast.Objects;
 
-namespace GameEngine.Screens
+namespace SecretOfThePast.Screens
 {
     class ScreenOfPictures : GameScreen
     {
@@ -31,7 +34,13 @@ namespace GameEngine.Screens
         public override void LoadContent()
         {
             ScreenBuilder sb = new ScreenBuilder(this);
-            sb.LoadScreen();
+            List<GameObjectPackage> objekty = sb.LoadScreen();
+            foreach (GameObjectPackage package in objekty)
+            {
+                object o = Activator.CreateInstance(Type.GetType(package.Type), this,
+                    package.Position, package.MetaData);
+                Layers[package.Layer].AddObject((GameObject)o);
+            }
             MainCam = new FreeCamera(this,30f);
             _selectedObject = new TextObject(this, "", new Vector2(ScreenManager.GraphicsDevice.Viewport.Bounds.Width - 20, 10))
             {

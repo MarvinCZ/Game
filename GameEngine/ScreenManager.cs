@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using GameEngine.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -25,18 +24,18 @@ namespace GameEngine
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             Fullscreen(true, _graphicDeviceManager);
-            Screens.Add(new TestScreen(this));
-            Screens.Add(new ScreenKolize(this));
-            Screens.Add(new ScreenKolizeDalsi(this));
-            Screens.Add(new Screen2(this));
-            Screens.Add(new ScreenOfPictures(this));
-            Screens.Add(new MenuScreen(this));
+            //Screens.Add(new TestScreen(this));
+            //Screens.Add(new ScreenKolize(this));
+            //Screens.Add(new ScreenKolizeDalsi(this));
+            //Screens.Add(new Screen2(this));
+            //Screens.Add(new ScreenOfPictures(this));
+            //Screens.Add(new MenuScreen(this));
 
         }
 
         protected override void LoadContent(){
             base.LoadContent();
-            ActiveScreen<MenuScreen>();
+            ActiveScreen("Menu");
         }
 
         public void ActiveScreen<T>() where T : GameScreen{
@@ -55,7 +54,7 @@ namespace GameEngine
         }
         public void ActiveScreen(String screen)
         {
-            if (_activeScreen.Name != screen)
+            if (_activeScreen == null || _activeScreen.Name != screen)
             {
                 LastMouseState = Mouse.GetState();
                 for (int i = 0; i < Screens.Count; i++)
@@ -81,7 +80,7 @@ namespace GameEngine
                 if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
                     Fullscreen(null, _graphicDeviceManager);
                 else
-                    ActiveScreen<MenuScreen>();
+                    ActiveScreen("Menu");
             }
             for (int i = 0; i < Screens.Count; i++)
             {

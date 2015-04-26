@@ -1,10 +1,11 @@
 ﻿using System;
+using GameEngine;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
-using GameEngine.Objects;
 using Microsoft.Xna.Framework;
+using SecretOfThePast.Objects;
 
-namespace GameEngine.Screens
+namespace SecretOfThePast.Screens
 {
     class TestScreen : GameScreen
     {

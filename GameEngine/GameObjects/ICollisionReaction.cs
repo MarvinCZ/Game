@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GameObjects
 {
-    interface ICollisionReaction
+    public interface ICollisionReaction
     {
         void CollisionReaction(GameObject obj);
     }

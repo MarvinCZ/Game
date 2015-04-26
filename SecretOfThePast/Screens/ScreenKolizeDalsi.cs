@@ -1,8 +1,9 @@
-﻿using GameEngine.Cameras;
-using GameEngine.Objects;
+﻿using GameEngine;
+using GameEngine.Cameras;
 using Microsoft.Xna.Framework;
+using SecretOfThePast.Objects;
 
-namespace GameEngine.Screens
+namespace SecretOfThePast.Screens
 {
     class ScreenKolizeDalsi : GameScreen
     {

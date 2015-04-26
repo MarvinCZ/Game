@@ -6,7 +6,7 @@ using GameEngine.GameObjects;
 
 namespace GameEngine.HelpObjects
 {
-    class ScreenBuilder
+    public class ScreenBuilder
     {
         private readonly GameScreen _screen;
         public ScreenBuilder(GameScreen screen)
@@ -19,7 +19,7 @@ namespace GameEngine.HelpObjects
             return (File.Exists(_screen.Name + ".xml")) ;
         }
 
-        public void LoadScreen()
+        public List<GameObjectPackage> LoadScreen()
         {
             if (IsAbleToLoad()){
                 try{
@@ -29,16 +29,13 @@ namespace GameEngine.HelpObjects
                     {
                         packages = (List<GameObjectPackage>) serializer.Deserialize(sr);
                     }
-                    foreach (GameObjectPackage gameObjectPackage in packages){
-                        object o = Activator.CreateInstance(Type.GetType(gameObjectPackage.Type), _screen,
-                            gameObjectPackage.Position, gameObjectPackage.MetaData);
-                        _screen.Layers[gameObjectPackage.Layer].AddObject((GameObject) o);
-                    }
+                    return packages;
                 }
                 catch (Exception e){
                     Console.WriteLine(e.ToString());
                 }
             }
+            return null;
         }
 
         public void SaveScreen()

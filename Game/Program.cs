@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region Using Statements
+using System;
+using System.Collections.Generic;
+using System.Linq;
+#endregion
 
-namespace GameEngine
+namespace Game
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +18,7 @@ namespace GameEngine
         [STAThread]
         static void Main()
         {
-            using (var game = new ScreenManager())
+            using (var game = new Game1())
                 game.Run();
         }
     }

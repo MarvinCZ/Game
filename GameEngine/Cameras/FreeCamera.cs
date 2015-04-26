@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameEngine.Cameras
 {
-    class FreeCamera : Camera{
+    public class FreeCamera : Camera{
         public FreeCamera(GameScreen game, float moveSpeed = 3f) : base(game){
             MoveSpeed = moveSpeed;
         }

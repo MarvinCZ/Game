@@ -1,7 +1,8 @@
-﻿using GameEngine.GameObjects;
+﻿using GameEngine;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Objects
+namespace SecretOfThePast.Objects
 {
     class RotujciText : TextObject
     {

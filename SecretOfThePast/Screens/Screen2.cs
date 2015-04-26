@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
+using GameEngine;
 using GameEngine.Cameras;
 using GameEngine.GameObjects;
 using GameEngine.GuiObjects;
-using GameEngine.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using SecretOfThePast.Objects;
 
-namespace GameEngine.Screens
+namespace SecretOfThePast.Screens
 {
     class Screen2 : GameScreen{
         private TextObject _ukazatel;

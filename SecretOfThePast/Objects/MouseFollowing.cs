@@ -1,10 +1,11 @@
-﻿using GameEngine.GameObjects;
+﻿using GameEngine;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameEngine.Objects
+namespace SecretOfThePast.Objects
 {
     class MouseFollowing : SpriteObject{
         public MouseFollowing(GameScreen game) : base(game){

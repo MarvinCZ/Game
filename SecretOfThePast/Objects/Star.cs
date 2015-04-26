@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using GameEngine;
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Objects
+namespace SecretOfThePast.Objects
 {
     class Star : SpriteObject{
         private Vector2 _smer;

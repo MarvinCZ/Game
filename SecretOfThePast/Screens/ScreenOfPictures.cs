@@ -49,6 +49,7 @@ namespace SecretOfThePast.Screens
                 Scale = new Vector2(0.3f, 0.3f)
             };
             Layers["Gui"].Objekty.Add(_selectedObject);
+            //Layers["Main"].Objekty.Add(new Player(this,new Vector2()));
             //for (int i = 0; i < 10; i++)
             //    Layers["Main"].Objekty.Add(new Tree(this, new Vector2(800 * i, 0)));
             //Layers["Main"].Objekty.Add(new Hause(this, new Vector2(80, 800)));
@@ -90,7 +91,15 @@ namespace SecretOfThePast.Screens
                 Layers["Background"].AddObject(new Road(this, "RD"));
             if (Keyboard.GetState().IsKeyDown(Keys.D6) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D6))
                 Layers["Background"].AddObject(new Road(this, "RU"));
-            _selectedObject.Text = "1:DU 2:LD 3:LR 4:LU 5:RD 6:RU   Vybrany objekt:" + _selectedNumber;
+            if (Keyboard.GetState().IsKeyDown(Keys.D7) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D7))
+                Layers["Background"].AddObject(new Stain(this, new Vector2(), "1"));
+            if (Keyboard.GetState().IsKeyDown(Keys.D8) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D8))
+                Layers["Background"].AddObject(new Stain(this, new Vector2(), "2"));
+            if (Keyboard.GetState().IsKeyDown(Keys.D9) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D9))
+                Layers["Background"].AddObject(new Stain(this, new Vector2(), "3"));
+            if (Keyboard.GetState().IsKeyDown(Keys.D0) && ScreenManager.LastKeyboardState.IsKeyUp(Keys.D0))
+                Layers["Background"].AddObject(new Stain(this, new Vector2(), "4"));
+            _selectedObject.Text = "1:DU 2:LD 3:LR 4:LU 5:RD 6:RU 7-9:Stain   Vybrany objekt:" + _selectedNumber;
         }
     }
 }

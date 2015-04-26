@@ -30,6 +30,7 @@ namespace GameEngine.GameObjects
             else if (Smer.X != 0f || Smer.Y != 0)
             {
                 Smer.Normalize();
+                Smer *= new Vector2(1f,0.7f);
                 Position += new Vector2(Smer.X, 0) * Rychlost;
                 KolidedObjects = new List<SpriteObject>();
                 SpriteObject kolided;

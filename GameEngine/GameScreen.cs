@@ -29,7 +29,6 @@ namespace GameEngine
             ContentManager.RootDirectory = screenManager.Content.RootDirectory;
             Layers["Background"] = new Layer(this);
             Layers["Main"] = new Layer(this);
-            //Layers["MovebleObjects"] = new Layer(this);
             Layers["Foreground"] = new Layer(this);
             Layers["Gui"] = new Layer(this,false);
         }

@@ -53,8 +53,7 @@ namespace SecretOfThePast.Objects
             }
             float x = 0;
             float y = 0;
-            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveLeft))
-            {
+            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveLeft)){
                 x = -1;
                 if (_animace >= 30 && _animace < 40)
                 {
@@ -68,8 +67,7 @@ namespace SecretOfThePast.Objects
                     _animace = 30;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveRight))
-            {
+            else if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveRight)){
                 x = 1;
                 if (_animace >= 10 && _animace < 20)
                 {
@@ -83,8 +81,7 @@ namespace SecretOfThePast.Objects
                     _animace = 10;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveUp))
-            {
+            else if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveUp)){
                 y = -1;
                 if (_animace >= 20 && _animace < 30)
                 {
@@ -98,8 +95,7 @@ namespace SecretOfThePast.Objects
                     _animace = 20;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveDown))
-            {
+            else if (Keyboard.GetState().IsKeyDown(GameHelper.Instance.PlayerMoveDown)){
                 y = 1;
                 if (_animace >= 0 && _animace < 10)
                 {

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SecretOfThePast.Objects
+namespace Testovaci.Objects
 {
     class Ctverec : SpriteObject
     {

@@ -8,13 +8,13 @@ namespace GameEngine.GameObjects
     {
         protected bool ColideX;
         protected bool ColideY;
-        protected float Rychlost;
+        protected Vector2 Rychlost;
         protected Vector2 Smer;
         public List<SpriteObject> KolidedObjects = new List<SpriteObject>();
         public MovableObject(GameScreen game) : base(game){
             SpriteColor = Color.Red;
             Smer = new Vector2(0, 0);
-            Rychlost = 5f;
+            Rychlost = new Vector2(5f,3.5f);
             Solid = true;
         }
 
@@ -30,7 +30,6 @@ namespace GameEngine.GameObjects
             else if (Smer.X != 0f || Smer.Y != 0)
             {
                 Smer.Normalize();
-                Smer *= new Vector2(1f,0.7f);
                 Position += new Vector2(Smer.X, 0) * Rychlost;
                 KolidedObjects = new List<SpriteObject>();
                 SpriteObject kolided;

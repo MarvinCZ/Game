@@ -101,10 +101,10 @@ namespace GameEngine.Cameras
                 MoveSpeed -= 0.01f;
             if (NeedRecalculation){
                 _transformMatrix = Matrix.Identity*
-                                  Matrix.CreateTranslation(-Position.X, -Position.Y, 0)*
-                                  Matrix.CreateRotationZ(_rotation)*
-                                  Matrix.CreateTranslation(Origin.X, Origin.Y, 0)*
-                                  Matrix.CreateScale(_zoom, _zoom, _zoom);
+                                   Matrix.CreateTranslation(-Position.X, -Position.Y, 0)*
+                                   Matrix.CreateRotationZ(_rotation)*
+                                   Matrix.CreateTranslation(Origin.X, Origin.Y, 0)*
+                                   Matrix.CreateScale(_zoom, _zoom, _zoom);
 
                 Vector2 from;
                 Vector2 to;

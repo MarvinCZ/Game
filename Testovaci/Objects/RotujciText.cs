@@ -2,7 +2,7 @@
 using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 
-namespace SecretOfThePast.Objects
+namespace Testovaci.Objects
 {
     class RotujciText : TextObject
     {

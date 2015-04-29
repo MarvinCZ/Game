@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SecretOfThePast.Objects
+namespace Testovaci.Objects
 {
     class Bounci : MovableObject, ICollisionReaction
     {
@@ -19,6 +19,7 @@ namespace SecretOfThePast.Objects
             Smer = new Vector2(GameHelper.Instance.RandomNext(-400, 400), GameHelper.Instance.RandomNext(-400, 400));
             Smer.Normalize();
             SpriteColor = Color.Red;
+            Rychlost = new Vector2(5f,5f);
         }
 
         public override void Update(GameTime gameTime)

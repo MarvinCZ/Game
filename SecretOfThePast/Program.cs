@@ -20,7 +20,7 @@ namespace SecretOfThePast
         static void Main()
         {
             using (var game = new ScreenManager()){
-                game.Screens.Add(new ScreenOfPictures(game));
+                game.Screens.Add(new MainScreen(game));
                 game.Screens.Add(new MenuScreen(game));
                 game.Run();
             }

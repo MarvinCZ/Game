@@ -24,12 +24,6 @@ namespace GameEngine
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             Fullscreen(true, _graphicDeviceManager);
-            //Screens.Add(new TestScreen(this));
-            //Screens.Add(new ScreenKolize(this));
-            //Screens.Add(new ScreenKolizeDalsi(this));
-            //Screens.Add(new Screen2(this));
-            //Screens.Add(new ScreenOfPictures(this));
-            //Screens.Add(new MenuScreen(this));
 
         }
 

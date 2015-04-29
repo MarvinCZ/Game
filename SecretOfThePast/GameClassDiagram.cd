@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SecretOfThePast.Objects.Hause">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Hause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Objects.Player">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAEAAgAAAAAAAAAAAAAAAAAQAAAAAAQ=</HashCode>
+      <FileName>Objects\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Objects.Road">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Road.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Objects.Stain">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Stain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Objects.Tree">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Tree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Screens.MainScreen" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAABAAAgAAAAAAAAQAAAAAAAAAAAAACAAAAAQ=</HashCode>
+      <FileName>Screens\MainScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretOfThePast.Screens.MenuScreen" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAQAAQ=</HashCode>
+      <FileName>Screens\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEngine.GameObjects.SpriteObject" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEngine.GameObjects.MovableObject" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameEngine.GameScreen" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

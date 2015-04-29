@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretOfThePast", "SecretOfThePast\SecretOfThePast.csproj", "{72681050-C72B-4E44-BB0F-260F8BE767D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testovaci", "Testovaci\Testovaci.csproj", "{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{72681050-C72B-4E44-BB0F-260F8BE767D6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{72681050-C72B-4E44-BB0F-260F8BE767D6}.Release|x86.ActiveCfg = Release|x86
 		{72681050-C72B-4E44-BB0F-260F8BE767D6}.Release|x86.Build.0 = Release|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Debug|x86.ActiveCfg = Debug|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Debug|x86.Build.0 = Debug|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Release|Any CPU.ActiveCfg = Release|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Release|Mixed Platforms.Build.0 = Release|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Release|x86.ActiveCfg = Release|x86
+		{16DED98E-F5E4-4404-B99B-0C2FE0A5F481}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

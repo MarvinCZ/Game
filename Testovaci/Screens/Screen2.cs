@@ -6,9 +6,9 @@ using GameEngine.GameObjects;
 using GameEngine.GuiObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using SecretOfThePast.Objects;
+using Testovaci.Objects;
 
-namespace SecretOfThePast.Screens
+namespace Testovaci.Screens
 {
     class Screen2 : GameScreen{
         private TextObject _ukazatel;

@@ -150,7 +150,7 @@
   <Class Name="GameEngine.GuiObjects.MessageBox">
     <Position X="0.5" Y="22.5" Width="2.25" />
     <NestedTypes>
-      <Enum Name="GameEngine.GuiObjects.MessageBox.Result" Collapsed="true">
+      <Enum Name="GameEngine.GuiObjects.MessageBox.Result">
         <TypeIdentifier>
           <NewMemberFileName>GuiObjects\MessageBox.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -169,14 +169,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.GameHelper">
-    <Position X="14.5" Y="0.5" Width="2.75" />
+    <Position X="0.5" Y="6.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AEAGAAIAAAgIAAAAAAQAAAAAggQBQICAQQAAAAAAIAE=</HashCode>
       <FileName>GameHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine.Extensions">
-    <Position X="14.5" Y="6" Width="2.75" />
+    <Position X="0.5" Y="12.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions.cs</FileName>

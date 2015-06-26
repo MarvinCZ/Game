@@ -1,4 +1,5 @@
-﻿using GameEngine.GameObjects;
+﻿using System;
+using GameEngine.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
@@ -7,7 +8,7 @@ namespace GameEngine.HelpObjects
     public class Sound
     {
         private const int MIN_VZDAL = 10000;
-        private const int ROZMEZI = 990000;
+        private const int ROZMEZI = 1300000;
         public string Name { get; protected set; }
         protected readonly SoundEffectInstance SndEffect;
         protected SpriteObject Parrent;
@@ -24,6 +25,7 @@ namespace GameEngine.HelpObjects
             {
                 Vector2 rozdil = Screen.MainCam.Position - Parrent.Position;
                 float vzdalenost = rozdil.LengthSquared();
+                vzdalenost *= (float)Math.Pow(Screen.MainCam.Zoom,2);
                 vzdalenost -= MIN_VZDAL;
                 if (vzdalenost < 0)
                     vzdalenost = 0;

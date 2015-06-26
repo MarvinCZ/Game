@@ -12,7 +12,6 @@ namespace GameEngine.GameObjects
         protected Vector2 Smer;
         public List<SpriteObject> KolidedObjects = new List<SpriteObject>();
         public MovableObject(GameScreen game) : base(game){
-            SpriteColor = Color.Red;
             Smer = new Vector2(0, 0);
             Rychlost = new Vector2(5f,3.5f);
             Solid = true;
